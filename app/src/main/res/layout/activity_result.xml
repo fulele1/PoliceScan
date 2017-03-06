@@ -20,13 +20,14 @@
             android:text="货运单号："
             android:textSize="@dimen/textview_normals_size"/>
         <TextView
-            android:id="@+id/txt_time_result"
+            android:id="@+id/txt_code_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
            />
-
-
     </LinearLayout>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,12 +38,62 @@
             android:text="上传时间："
             android:textSize="@dimen/textview_normals_size"/>
         <TextView
+            android:id="@+id/txt_time_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快递类型："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_type_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业名称："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
             android:id="@+id/txt_company_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="物品名称："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_name_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,14 +102,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="快递公司："
+            android:text="证件号码："
             android:textSize="@dimen/textview_normals_size"/>
         <TextView
-            android:id="@+id/txt_code_result"
+            android:id="@+id/txt_mancert_code_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+    </LinearLayout>
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寄件地址："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_address_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -68,22 +136,129 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="快  递  员："
+            android:text="联系电话："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_phone_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收件人电话："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_des_phone_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从业人员证件号："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_empcertcode_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业编码："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_com_code_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从业人员名称："
             android:textSize="@dimen/textview_normals_size"/>
         <TextView
             android:id="@+id/txt_per_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
         <TextView
-            android:id="@+id/txt_date_result"
-            android:layout_marginLeft="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2017-3-2 9:44"/>
-
+            android:text="从业人员编码："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_empcode_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从业人员快递编码："
+            android:textSize="@dimen/textview_normals_size"/>
+        <TextView
+            android:id="@+id/txt_empempresscode_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_date_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginLeft="10dp"/>
+
+
+
 
     <LinearLayout style="@style/common_horizontal_division_line_style" />
 
@@ -103,8 +278,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20" />
-
+        android:layout_weight="20"
+        android:id="@+id/view" />
 
 
 </LinearLayout>
