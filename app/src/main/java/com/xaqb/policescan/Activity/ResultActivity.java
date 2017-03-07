@@ -96,15 +96,11 @@ public class ResultActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String s, int i) {
-                        LogUtils.i(HttpUrlUtils.getHttpUrl().quer_yCode()+"&code="+mCode);
                         if(s.startsWith("0")){
                             //suc
                             String str = ChangeUtil.procRet(s);//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
                             str = str.substring(1,str.length());
                             Map<String,Object> data =  GsonUtil.JsonToMap(str);
-
-                            Log.i("------",data.get("expresstype").toString());
-
                             if(!data.get("expresstype").toString().equals("")){
                                 mTvExpressType.setText(data.get("expresstype").toString());//投递类型
                                 mTvCode.setText(mCode);
@@ -122,10 +118,12 @@ public class ResultActivity extends BaseActivity {
                                 mTvPerson.setText(data.get("empname").toString());//从业人员名称
                             }else{
                                 mTvCode.setText(mCode+"查无此单");
+                                mQuery.setVisibility(View.GONE);
                             }
                         }else{
-                            mTvCode.setText(mCode+"(查无此单)");
                             //failure
+                            mTvCode.setText(mCode+"(查无此单)");
+                            mQuery.setVisibility(View.GONE);
                         }
                     }
                 });
