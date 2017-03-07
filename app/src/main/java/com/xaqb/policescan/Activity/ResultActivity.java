@@ -1,6 +1,7 @@
 package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -58,7 +59,7 @@ public class ResultActivity extends BaseActivity {
     private void assignViews(){
         mQuery = (Button) instance.findViewById(R.id.bt_query_result);
         mTvCode = (TextView) findViewById(R.id.txt_code_result);
-        mTvCode.setText(mCode);
+        //mTvCode.setText(mCode);
         mTvDate = (TextView) findViewById(R.id.txt_date_result);
         mTvDate.setText(new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss").format(new Date()));
         mTvExpressType = (TextView) findViewById(R.id.txt_type_result);
@@ -100,12 +101,11 @@ public class ResultActivity extends BaseActivity {
                             //suc
                             String str = ChangeUtil.procRet(s);//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
                             str = str.substring(1,str.length());
-                            LogUtils.i(str);
                             Map<String,Object> data =  GsonUtil.JsonToMap(str);
 
-                            if (!mCode.equals(data.get("code").toString())){
-                                mTvCode.setText(mCode+"(查无此单)");
-                            }if (mCode.equals(data.get("code").toString())){
+                            Log.i("------",data.get("expresstype").toString());
+
+                            if(!data.get("expresstype").toString().equals("")){
                                 mTvExpressType.setText(data.get("expresstype").toString());//投递类型
                                 mTvCode.setText(mCode);
                                 mTvName.setText( data.get("name").toString());//物品名称
@@ -120,9 +120,11 @@ public class ResultActivity extends BaseActivity {
                                 mTvEmpcertCode.setText( data.get("empcertcode").toString());//从业人员证件号
                                 mTvPersonExpCode.setText( data.get("empexpresscode").toString());//从业人员快递编码
                                 mTvPerson.setText(data.get("empname").toString());//从业人员名称
+                            }else{
+                                mTvCode.setText(mCode+"查无此单");
                             }
-
                         }else{
+                            mTvCode.setText(mCode+"(查无此单)");
                             //failure
                         }
                     }
