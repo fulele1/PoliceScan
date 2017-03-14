@@ -1,15 +1,18 @@
 package com.xaqb.policescan.Activity;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.xaqb.policescan.R;
 
 public class QueryPerActivity extends BaseActivity {
 
     private QueryPerActivity instance;
-    private EditText mEtPer;
-    private ImageView ivPhoto;
+    private Button mBtnQuery;
 
     @Override
     public void initTitleBar() {
@@ -27,8 +30,7 @@ public class QueryPerActivity extends BaseActivity {
     }
 
     private void asSignViews() {
-        mEtPer = (EditText) findViewById(R.id.et_order_per);
-        ivPhoto = (ImageView) findViewById(R.id.iv_photo_per);
+        mBtnQuery = (Button) findViewById(R.id.bt_query_per);
     }
 
     @Override
@@ -38,6 +40,16 @@ public class QueryPerActivity extends BaseActivity {
 
     @Override
     public void addListener() {
+        mBtnQuery.setOnClickListener(instance);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bt_query_per://查询按钮
+                startActivity(new Intent(instance,PerActivity.class));
+                break;
+        }
     }
 }

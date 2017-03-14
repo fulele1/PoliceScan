@@ -17,25 +17,19 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_edge"
-        android:background="#ffffff"
-        android:orientation="horizontal">
+        android:background="@null"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
 
-        <TextView
-            android:id="@+id/tv_user_text"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin_edge"
-            android:gravity="center"
-            android:text="@string/order_id"
-            android:textColor="#000000"
-            android:textSize="@dimen/textview_normal_size" />
+
 
         <EditText
             android:id="@+id/et_order_total"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
@@ -85,7 +79,7 @@
             android:id="@+id/txt_com_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="快递企业查询"
+            android:text="企业查询"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
@@ -95,7 +89,7 @@
     </LinearLayout>
 
 
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -103,10 +97,10 @@
         >
 
         <TextView
-            android:id="@+id/txt_set_total"
+            android:id="@+id/txt_modify_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="设置"
+            android:text="修改密码"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
@@ -115,10 +109,10 @@
             />
 
         <TextView
-            android:id="@+id/txt_code_total"
+            android:id="@+id/txt_finish_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="关于"
+            android:text="退出"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
@@ -126,6 +120,6 @@
             android:background="@drawable/btn_pressed"
 
             />
-    </LinearLayout>-->
+    </LinearLayout>
 
 </LinearLayout>

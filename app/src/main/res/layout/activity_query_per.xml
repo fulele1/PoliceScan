@@ -9,8 +9,106 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_edge"
-        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:padding="@dimen/abc_action_bar_content_inset_material">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_edge"
+            android:gravity="center"
+            android:text="企        业："
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_normal_size" />
+
+        <EditText
+            android:id="@+id/et_com_per"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="请输入快递企业"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_small_size" />
+    </LinearLayout>
+    <LinearLayout style="@style/common_horizontal_division_line_style" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="@dimen/abc_action_bar_content_inset_material">
+
+    android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_edge"
+            android:gravity="center"
+            android:text="姓        名："
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_normal_size" />
+
+        <EditText
+            android:id="@+id/et_per_per"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="10px"
+            android:hint="请输入快递员姓名"
+            android:paddingLeft="10px"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_small_size" />
+    </LinearLayout>
+    <LinearLayout style="@style/common_horizontal_division_line_style" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:padding="@dimen/abc_action_bar_content_inset_material">
+
+    >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_edge"
+            android:gravity="center"
+            android:text="电话号码："
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_normal_size" />
+
+        <EditText
+            android:id="@+id/et_phone_per"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="10px"
+            android:hint="请输入快递员电话号码"
+            android:paddingLeft="10px"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_small_size" />
+    </LinearLayout>
+    <LinearLayout style="@style/common_horizontal_division_line_style" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/abc_action_bar_content_inset_material">
+
+    android:background="#ffffff"
         android:orientation="horizontal">
 
         <TextView
@@ -18,31 +116,41 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/margin_edge"
             android:gravity="center"
-            android:text="@string/per_id"
+            android:text="证件号码："
             android:textColor="#000000"
             android:textSize="@dimen/textview_normal_size" />
 
         <EditText
-            android:id="@+id/et_order_per"
+            android:id="@+id/et_ide_per"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawablePadding="10px"
-            android:hint="@string/input_per_id"
-            android:paddingLeft="10px"
+            android:hint="请输入快递员证件号码"
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
-
-        <ImageView
-            android:id="@+id/iv_photo_per"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/margin_edge"
-            android:src="@mipmap/card"
-            android:layout_gravity="center"/>
     </LinearLayout>
     <LinearLayout style="@style/common_horizontal_division_line_style" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:padding="10dp">
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/bt_query_per"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_button_selector"
+        android:padding="10dp"
+        android:text="查询"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/textview_normal_size" />
+
 </LinearLayout>
