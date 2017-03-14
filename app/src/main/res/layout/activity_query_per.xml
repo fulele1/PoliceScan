@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_query_per"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_edge"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_edge"
+            android:gravity="center"
+            android:text="@string/per_id"
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_normal_size" />
+
+        <EditText
+            android:id="@+id/et_order_per"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="10px"
+            android:hint="@string/input_per_id"
+            android:paddingLeft="10px"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_small_size" />
+
+        <ImageView
+            android:id="@+id/iv_photo_per"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/margin_edge"
+            android:src="@mipmap/card"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout style="@style/common_horizontal_division_line_style" />
+</LinearLayout>
