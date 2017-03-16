@@ -16,6 +16,8 @@ public class TotalActivity extends BaseActivity {
     private  TotalActivity instance;
     private TextView mTxtPer;
     private TextView mTxtCome;
+    private TextView mTxtModify;
+    private TextView mTxtFinish;
     private ImageView ivZxing;
     private EditText etOrderNum;
     @Override
@@ -38,6 +40,8 @@ public class TotalActivity extends BaseActivity {
         etOrderNum = (EditText) findViewById(R.id.et_order_total);
         mTxtPer = (TextView) findViewById(R.id.txt_per_total);
         mTxtCome = (TextView) findViewById(R.id.txt_com_total);
+        mTxtModify = (TextView) findViewById(R.id.txt_modify_total);
+        mTxtFinish = (TextView) findViewById(R.id.txt_finish_total);
 
     }
 
@@ -50,8 +54,9 @@ public class TotalActivity extends BaseActivity {
         ivZxing.setOnClickListener(instance);
         mTxtPer.setOnClickListener(instance);
         mTxtCome.setOnClickListener(instance);
+        mTxtModify.setOnClickListener(instance);
+        mTxtFinish.setOnClickListener(instance);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -73,8 +78,18 @@ public class TotalActivity extends BaseActivity {
             case R.id.txt_com_total://企业查询
                 startActivity(new Intent(instance,QueryComActivity.class));
                 break;
+
+            case R.id.txt_modify_total://修改密码
+                startActivity(new Intent(instance, FindKeyActivity.class));
+                break;
+            case R.id.txt_finish_total://退出登录
+                showAdialog(instance,"提示","是否退出程序","确定","取消").show();
+                break;
         }
     }
+
+
+
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

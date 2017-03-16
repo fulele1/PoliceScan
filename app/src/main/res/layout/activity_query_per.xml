@@ -28,6 +28,7 @@
             android:background="@null"
             android:hint="请输入快递企业"
             android:singleLine="true"
+            android:paddingLeft="10px"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
     </LinearLayout>
@@ -52,7 +53,7 @@
 
         <EditText
             android:id="@+id/et_per_per"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
@@ -126,6 +127,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
+            android:paddingLeft="10px"
             android:hint="请输入快递员证件号码"
             android:singleLine="true"
             android:textColor="#000000"

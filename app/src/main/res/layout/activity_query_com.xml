@@ -23,12 +23,17 @@
             android:textColor="#000000"
             android:textSize="@dimen/textview_normal_size" />
 
+
         <EditText
             android:id="@+id/et_coms_com"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
             android:background="@null"
+            android:drawablePadding="10px"
             android:hint="请输入品牌名称"
+            android:paddingLeft="10px"
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
@@ -54,7 +59,7 @@
 
         <EditText
             android:id="@+id/et_com_com"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
@@ -90,7 +95,7 @@
 
         <EditText
             android:id="@+id/et_location_com"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="1"

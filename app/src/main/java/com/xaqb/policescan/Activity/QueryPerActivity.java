@@ -12,7 +12,11 @@ import com.xaqb.policescan.R;
 public class QueryPerActivity extends BaseActivity {
 
     private QueryPerActivity instance;
-    private Button mBtnQuery;
+    private Button mBtnQuery;//查询
+    private EditText mEtCom;//企业
+    private EditText mEtPer;//姓名
+    private EditText mEtPhone;//电话号码
+    private EditText mEtIde;//证件号码
 
     @Override
     public void initTitleBar() {
@@ -31,6 +35,10 @@ public class QueryPerActivity extends BaseActivity {
 
     private void asSignViews() {
         mBtnQuery = (Button) findViewById(R.id.bt_query_per);
+        mEtCom = (EditText) findViewById(R.id.et_com_per);
+        mEtPer = (EditText) findViewById(R.id.et_per_per);
+        mEtPhone = (EditText) findViewById(R.id.et_phone_per);
+        mEtIde = (EditText) findViewById(R.id.et_ide_per);
     }
 
     @Override
