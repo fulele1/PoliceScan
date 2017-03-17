@@ -233,18 +233,6 @@
             android:layout_weight="1"
             android:padding="15dp"
             />
-
-
-        <com.github.mikephil.charting.charts.LineChart
-
-            android:id="@+id/chart2_per_de"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:padding="15dp"
-            />
-
     </LinearLayout>
 
 

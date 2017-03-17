@@ -121,9 +121,6 @@
             <LinearLayout style="@style/common_horizontal_division_line_style" />
 
 
-
-
-
         </LinearLayout>
 
     </ScrollView>
@@ -145,19 +142,6 @@
             android:padding="15dp"
 
             />
-
-
-        <com.github.mikephil.charting.charts.LineChart
-
-            android:id="@+id/chart2_com_de"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:padding="15dp"
-
-            />
-
 
 
     </LinearLayout>

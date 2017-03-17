@@ -22,21 +22,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
             android:text="男"/>
         <TextView
             android:id="@+id/tv_num_per_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
             android:text="12345678965"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="5dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
         <TextView
@@ -50,9 +48,5 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="610422199411162229"/>
-
     </LinearLayout>
-
-
-
 </LinearLayout>
