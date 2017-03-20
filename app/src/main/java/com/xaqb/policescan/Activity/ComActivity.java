@@ -8,13 +8,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.adapter.ComAdapter;
 import com.xaqb.policescan.entity.Company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class ComActivity extends BaseActivity {
+public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
     private ListView mList;
     private TextView mTvCount;
     private ComActivity instance;
@@ -38,19 +41,19 @@ public class ComActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        mCompanys = new ArrayList<>();
-        Company company = new Company();
-        company.setCom("天天快递");
-        mCompanys.add(company);
-
+        Intent intent = instance.getIntent();
+        String select = intent.getStringExtra("select");
+        LogUtils.i("-----"+select);
     }
 
-
+    /**
+     * 增加事件处理
+     */
     @Override
     public void addListener() {
-        comAdapter = new ComAdapter(instance,mCompanys);
-        mList.setAdapter(comAdapter);
-        mTvCount.setText(""+mCompanys.size());
+
+        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");//进行网络连接
+        this.setOnDataFinishedLinstern(instance);
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -58,5 +61,23 @@ public class ComActivity extends BaseActivity {
             }
         });
 
+    }
+
+    /**
+     * 处理回调回来的数据
+     * @param data
+     */
+    @Override
+    public void dataFinishedLinstern(Map<String, Object> data) {
+
+        mCompanys = new ArrayList<>();
+        for (int i =0;i<data.size()-1;i++){
+            Company company = new Company();
+            company.setCom(data.get("mancertcode").toString());
+            mCompanys.add(company);
+        }
+        comAdapter = new ComAdapter(instance,mCompanys);
+        mList.setAdapter(comAdapter);//设置适配器
+        mTvCount.setText(""+mCompanys.size());
     }
 }

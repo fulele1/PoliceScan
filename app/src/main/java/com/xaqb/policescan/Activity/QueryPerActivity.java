@@ -1,6 +1,8 @@
 package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +10,16 @@ import android.widget.ImageView;
 import android.widget.Switch;
 
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.ChangeUtil;
+import com.xaqb.policescan.Utils.GsonUtil;
+import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.Map;
+
+import okhttp3.Call;
 
 public class QueryPerActivity extends BaseActivity {
 
@@ -39,6 +51,7 @@ public class QueryPerActivity extends BaseActivity {
         mEtPer = (EditText) findViewById(R.id.et_per_per);
         mEtPhone = (EditText) findViewById(R.id.et_phone_per);
         mEtIde = (EditText) findViewById(R.id.et_ide_per);
+
     }
 
     @Override
@@ -54,10 +67,32 @@ public class QueryPerActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        String com = mEtCom.getText().toString();
+        String per = mEtPer.getText().toString();
+        String phone = mEtPhone.getText().toString();
+        String ide = mEtIde.getText().toString();
+
         switch (v.getId()){
             case R.id.bt_query_per://查询按钮
-                startActivity(new Intent(instance,PerActivity.class));
+                if (!com.equals("")){
+                    toIntent(com);
+                } if (!per.equals("")){
+                    toIntent(per);
+                } if (!phone.equals("")){
+                    toIntent(phone);
+                } if (!ide.equals("")){
+                    toIntent(ide);
+                }
                 break;
         }
     }
+
+
+    public void toIntent(String string){
+        Intent intent = new Intent(instance,PerActivity.class);
+        intent.putExtra("select",string);
+        startActivity(intent);
+    }
+
+
 }

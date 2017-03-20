@@ -8,13 +8,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.ChangeUtil;
+import com.xaqb.policescan.Utils.GsonUtil;
+import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.adapter.MyAdapter;
 import com.xaqb.policescan.entity.Person;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class PerActivity extends BaseActivity {
+import okhttp3.Call;
+
+public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
     private List<Person> mPeople;
     private PerActivity instance;
     private ListView mList;
@@ -38,21 +47,17 @@ public class PerActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        mPeople = new ArrayList<>();
-        Person person = new Person();
-        person.setName("张三");
-        person.setSix("男");
-        person.setNum("15245652889");
-        person.setIde("61042219956879");
-        mPeople.add(person);
-        mCount.setText(mPeople.size()+"");
+        Intent intent = instance.getIntent();
+        String select = intent.getStringExtra("select");
+        LogUtils.i(select+"--------");
     }
 
     @Override
     public void addListener() {
 
-        mAdapter = new MyAdapter(instance,mPeople);
-        mList.setAdapter(mAdapter);
+        setOnDataFinishedLinstern(instance);
+        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");
+
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -60,4 +65,22 @@ public class PerActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    public void dataFinishedLinstern(Map<String, Object> data) {
+        mPeople = new ArrayList<>();
+        for (int i =0;i<data.size()-1;i++){
+            Person person = new Person();
+            person.setName(data.get("expresstype").toString());
+            person.setSix(data.get("expresstype").toString());
+            person.setNum(data.get("manphone").toString());
+            person.setIde(data.get("mancertcode").toString());
+            mPeople.add(person);
+        }
+        mCount.setText(mPeople.size()+"");
+        mAdapter = new MyAdapter(instance,mPeople);
+        mList.setAdapter(mAdapter);
+    }
+
+
 }
