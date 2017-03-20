@@ -152,7 +152,6 @@ public class QueryActivity extends BaseActivity {
                             //failure
                             loadingDialog.dismiss();
                             mTvCode.setText(string + "(查无此单)");
-
                         }
                     }
                 });
