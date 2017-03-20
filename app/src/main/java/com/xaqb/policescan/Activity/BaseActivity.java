@@ -31,7 +31,15 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.xaqb.policescan.Manager.SystemBarTintManager;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.AppManager;
+import com.xaqb.policescan.Utils.ChangeUtil;
+import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Views.LoadingDialog;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.Map;
+
+import okhttp3.Call;
 
 /**
  * @author Jason_Chen on 2016/11/22.
@@ -464,5 +472,44 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         return alertDialog;
     }
 
+
+    Map<String, Object> data;
+
+    public Map<String, Object> getOkConnection(String url){
+
+        OkHttpUtils
+                .get()
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int i) {
+                        loadingDialog.dismiss();
+                        showToast("网络访问异常");
+                    }
+
+                    @Override
+                    public void onResponse(String s, int i) {
+                        if (s.startsWith("0")){
+                            loadingDialog.dismiss();
+                            String str = ChangeUtil.procRet(s);
+                            str = str.substring(1, str.length());
+                            data = GsonUtil.JsonToMap(str);
+                            mDataFinishedLinstern.dataFinishedLinstern(data);
+
+
+                        }else {
+                        }
+                    }
+                });
+        return data;
+    }
+    OnDataFinishedLinstern mDataFinishedLinstern;
+    public void setOnDataFinishedLinstern(OnDataFinishedLinstern dataFinishedLinstern){
+        mDataFinishedLinstern = dataFinishedLinstern;
+    }
 }
 
+interface OnDataFinishedLinstern{
+    void dataFinishedLinstern(Map<String, Object> data);
+}
