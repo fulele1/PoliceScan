@@ -1,7 +1,9 @@
 package com.xaqb.policescan.Activity;
 
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -12,12 +14,19 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.HttpUrlUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class ComDetailActivity extends BaseActivity {
-
+public class ComDetailActivity extends BaseActivity implements OnDataFinishedLinstern{
+    private ComDetailActivity instance;
+    private TextView mTvCom;
+    private TextView mTvPlice;
+    private TextView mTvPer;
+    private TextView mTvGet;
+    private TextView mTvPost;
 
 
     @Override
@@ -30,8 +39,15 @@ public class ComDetailActivity extends BaseActivity {
     @Override
     public void initViews() {
         setContentView(R.layout.activity_com_detail);
+        instance = this;
 
         LineChart chart = (LineChart) findViewById(R.id.chart_com_de);
+        mTvCom = (TextView) findViewById(R.id.txt_com_com_dt);
+        mTvPlice = (TextView) findViewById(R.id.txt_plice_com_dt);
+        mTvPer = (TextView) findViewById(R.id.txt_per_com_dt);
+        mTvGet = (TextView) findViewById(R.id.txt_get_com_dt);
+        mTvPost = (TextView) findViewById(R.id.txt_post_com_dt);
+
 
         // 制作7个数据点（沿x坐标轴）
         LineData mLineData = makeLineData(7);
@@ -40,11 +56,26 @@ public class ComDetailActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        Intent intent = instance.getIntent();
+        intent.getStringExtra("coms");
     }
 
     @Override
     public void addListener() {
+        setOnDataFinishedLinstern(instance);
+        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");
     }
+
+    @Override
+    public void dataFinishedLinstern(Map<String, Object> data) {
+        mTvCom.setText(data.get("expresstype").toString());
+        mTvPlice.setText(data.get("expresstype").toString());
+        mTvPer.setText(data.get("expresstype").toString());
+        mTvGet.setText(data.get("expresstype").toString());
+        mTvPost.setText(data.get("expresstype").toString());
+    }
+
+
 
     // 设置chart显示的样式
     private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
@@ -296,5 +327,6 @@ public class ComDetailActivity extends BaseActivity {
         LineData mLineData = new LineData(x, mLineDataSets);
         return mLineData;
     }
+
 
 }

@@ -57,7 +57,9 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(instance,ComDetailActivity.class));
+                Intent intent = new Intent(instance,ComDetailActivity.class);
+                intent.putExtra("coms",coms);
+                startActivity(intent);
             }
         });
 
@@ -67,13 +69,16 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
      * 处理回调回来的数据
      * @param data
      */
+    String coms;
     @Override
     public void dataFinishedLinstern(Map<String, Object> data) {
 
         mCompanys = new ArrayList<>();
         for (int i =0;i<data.size()-1;i++){
+
             Company company = new Company();
             company.setCom(data.get("mancertcode").toString());
+            coms = data.get("mancertcode").toString();
             mCompanys.add(company);
         }
         comAdapter = new ComAdapter(instance,mCompanys);

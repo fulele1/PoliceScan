@@ -29,6 +29,7 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
     private ListView mList;
     private TextView mCount;
     private MyAdapter mAdapter;
+    private String ide;
 
 
     @Override
@@ -49,7 +50,6 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
     public void initData() {
         Intent intent = instance.getIntent();
         String select = intent.getStringExtra("select");
-        LogUtils.i(select+"--------");
     }
 
     @Override
@@ -61,15 +61,19 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(instance,PerDetailActivity.class));
+                Intent intent = new Intent(instance,PerDetailActivity.class);
+                intent.putExtra("ide",ide);
+                startActivity(intent);
             }
         });
     }
+
 
     @Override
     public void dataFinishedLinstern(Map<String, Object> data) {
         mPeople = new ArrayList<>();
         for (int i =0;i<data.size()-1;i++){
+            ide = data.get("mancertcode").toString();
             Person person = new Person();
             person.setName(data.get("expresstype").toString());
             person.setSix(data.get("expresstype").toString());

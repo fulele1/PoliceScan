@@ -1,6 +1,9 @@
 package com.xaqb.policescan.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -11,14 +14,27 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
+import com.xaqb.policescan.entity.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class PerDetailActivity extends BaseActivity {
+public class PerDetailActivity extends BaseActivity implements OnDataFinishedLinstern{
 
-
-
+    PerDetailActivity instance;
+    private TextView mTvCom;
+    private TextView mTvName;
+    private TextView mTvNum;
+    private TextView mTvSix;
+    private TextView mTvNational;
+    private TextView mTvIde;
+    private TextView mTvHome;
+    private TextView mTvState;
+    private TextView mTvGet;
+    private TextView mTvPost;
     @Override
     public void initTitleBar() {
         setTitle("人员详情");
@@ -29,8 +45,18 @@ public class PerDetailActivity extends BaseActivity {
     @Override
     public void initViews() {
         setContentView(R.layout.activity_per_detile);
-
+        instance = this;
         LineChart chart = (LineChart) findViewById(R.id.chart_per_de);
+        mTvCom = (TextView) findViewById(R.id.txt_com_per_dt);
+        mTvName = (TextView) findViewById(R.id.txt_name_per_dt);
+        mTvNum = (TextView) findViewById(R.id.txt_num_per_dt);
+        mTvSix = (TextView) findViewById(R.id.txt_six_per_dt);
+        mTvNational = (TextView) findViewById(R.id.txt_national_per_dt);
+        mTvIde = (TextView) findViewById(R.id.txt_ide_per_dt);
+        mTvHome = (TextView) findViewById(R.id.txt_home_per_dt);
+        mTvState = (TextView) findViewById(R.id.txt_state_per_dt);
+        mTvGet = (TextView) findViewById(R.id.txt_get_per_dt);
+        mTvPost = (TextView) findViewById(R.id.txt_post_per_dt);
 
         // 制作7个数据点（沿x坐标轴）
         LineData mLineData = makeLineData(7);
@@ -39,12 +65,31 @@ public class PerDetailActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        Intent intent = instance.getIntent();
+        String ide = intent.getStringExtra("ide");
+        LogUtils.i("---"+ide);
     }
 
     @Override
     public void addListener() {
+        setOnDataFinishedLinstern(instance);
+        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");
 
+    }
+
+
+    @Override
+    public void dataFinishedLinstern(Map<String, Object> data) {
+        mTvCom.setText(data.get("expresstype").toString());
+        mTvName.setText(data.get("expresstype").toString());
+        mTvNum.setText(data.get("expresstype").toString());
+        mTvSix.setText(data.get("expresstype").toString());
+        mTvNational.setText(data.get("expresstype").toString());
+        mTvIde.setText(data.get("expresstype").toString());
+        mTvHome.setText(data.get("expresstype").toString());
+        mTvState.setText(data.get("expresstype").toString());
+        mTvGet.setText(data.get("expresstype").toString());
+        mTvPost.setText(data.get("expresstype").toString());
     }
 
     // 设置chart显示的样式
@@ -304,4 +349,6 @@ public class PerDetailActivity extends BaseActivity {
 
         return mLineData;
     }
+
+
 }
