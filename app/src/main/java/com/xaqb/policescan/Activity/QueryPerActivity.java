@@ -80,9 +80,9 @@ public class QueryPerActivity extends BaseActivity {
                 } if (!phone.equals("")){
                     toIntent(phone,PerActivity.class);
                 } if (!ide.equals("")){
+                    toIntent(phone,PerActivity.class);
                 }
                 break;
-
         }
     }
 

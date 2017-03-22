@@ -7,14 +7,22 @@
     android:orientation="vertical"
     tools:context="com.xaqb.policescan.Activity.TotalActivity">
 
-    <ImageView
-
-        android:id="@+id/imageView_query"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/logo"
-        android:scaleType="fitXY"
-        android:src="@mipmap/logo" />
+        android:layout_height="wrap_content"
+        android:background="#5890ff"
+        >
 
+        <TextView
+            android:id="@+id/tv_user_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="管理员001"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/abc_action_bar_content_inset_material"
+            android:drawableLeft="@mipmap/user"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,8 +33,6 @@
         android:orientation="horizontal"
         android:layout_gravity="center"
         >
-
-
 
         <EditText
             android:id="@+id/et_order_total"
@@ -88,6 +94,9 @@
             android:background="@drawable/btn_pressed"
             android:drawableTop="@mipmap/com"
             />
+
+
+
     </LinearLayout>
 
 
@@ -120,7 +129,19 @@
             android:gravity="center"
             android:drawableTop="@mipmap/fin"
             android:background="@drawable/btn_pressed"
+            />
 
+
+        <TextView
+            android:id="@+id/txt_update_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检查更新"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/btn_pressed"
+            android:drawableTop="@mipmap/update"
             />
     </LinearLayout>
 

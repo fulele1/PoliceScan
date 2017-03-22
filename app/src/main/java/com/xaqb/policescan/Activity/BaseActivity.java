@@ -473,6 +473,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     }
 
 
+
+
     /**
      * ok进行网络请求
      * @param url

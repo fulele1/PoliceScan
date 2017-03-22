@@ -1,7 +1,9 @@
 package com.xaqb.policescan.Activity;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ public class TotalActivity extends BaseActivity {
     private TextView mTxtCome;
     private TextView mTxtModify;
     private TextView mTxtFinish;
+    private TextView mTxtUser;
     private ImageView ivZxing;
     private EditText etOrderNum;
     @Override
@@ -42,6 +45,10 @@ public class TotalActivity extends BaseActivity {
         mTxtCome = (TextView) findViewById(R.id.txt_com_total);
         mTxtModify = (TextView) findViewById(R.id.txt_modify_total);
         mTxtFinish = (TextView) findViewById(R.id.txt_finish_total);
+        mTxtUser = (TextView) findViewById(R.id.tv_user_total);
+
+        SharedPreferences oData = getSharedPreferences("user", Activity.MODE_PRIVATE);
+        mTxtUser.setText(oData.getString("name","无名"));
 
     }
 
