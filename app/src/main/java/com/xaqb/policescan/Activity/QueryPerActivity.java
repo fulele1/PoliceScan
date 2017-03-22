@@ -62,7 +62,6 @@ public class QueryPerActivity extends BaseActivity {
     @Override
     public void addListener() {
         mBtnQuery.setOnClickListener(instance);
-
     }
 
     @Override
@@ -75,21 +74,21 @@ public class QueryPerActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.bt_query_per://查询按钮
                 if (!com.equals("")){
-                    toIntent(com);
+                    toIntent(com,PerActivity.class);
                 } if (!per.equals("")){
-                    toIntent(per);
+                    toIntent(per,PerActivity.class);
                 } if (!phone.equals("")){
-                    toIntent(phone);
+                    toIntent(phone,PerActivity.class);
                 } if (!ide.equals("")){
-                    toIntent(ide);
                 }
                 break;
+
         }
     }
 
 
-    public void toIntent(String string){
-        Intent intent = new Intent(instance,PerActivity.class);
+    public void toIntent(String string,Class activity ){
+        Intent intent = new Intent(instance,activity);
         intent.putExtra("select",string);
         startActivity(intent);
     }

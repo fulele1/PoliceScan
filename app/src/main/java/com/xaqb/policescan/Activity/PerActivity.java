@@ -8,6 +8,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.ChangeUtil;
+import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
 import com.xaqb.policescan.adapter.PerAdapter;
 import com.xaqb.policescan.entity.Person;
@@ -23,7 +25,9 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
     private ListView mList;
     private TextView mCount;
     private PerAdapter mAdapter;
-    private String ide;
+
+    public PerActivity() {
+    }
 
 
     @Override
@@ -56,24 +60,33 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(instance,PerDetailActivity.class);
-                intent.putExtra("ide",ide);
+                intent.putExtra("ide",mPeople.get(i).getIde());
                 startActivity(intent);
             }
         });
     }
 
-
     @Override
-    public void dataFinishedLinstern(Map<String, Object> data) {
+    public void dataFinishedLinstern(String s) {
         mPeople = new ArrayList<>();
-        for (int i =0;i<data.size()-1;i++){
-            ide = data.get("mancertcode").toString();
+        if (s.startsWith("0")){
+            //响应成功
+            loadingDialog.dismiss();
+            String str = ChangeUtil.procRet(s);
+            str = str.substring(1,str.length());
+            Map<String ,Object> data = GsonUtil.JsonToMap(str);
             Person person = new Person();
             person.setName(data.get("expresstype").toString());
             person.setSix(data.get("expresstype").toString());
             person.setNum(data.get("manphone").toString());
             person.setIde(data.get("mancertcode").toString());
+//            person.setName(data.get("empname").toString());
+//            person.setSix(data.get("empsex").toString());
+//            person.setNum(data.get("empcertcode").toString());
+//            person.setIde(data.get("empcode").toString());
             mPeople.add(person);
+        }else{
+            //响应失败
         }
         mCount.setText(mPeople.size()+"");
         mAdapter = new PerAdapter(instance,mPeople);

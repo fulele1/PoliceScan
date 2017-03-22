@@ -81,11 +81,8 @@
         <activity android:name=".Activity.PerActivity" />
         <activity android:name=".Activity.FinishActivity" />
         <activity android:name=".Activity.PerDetailActivity" />
-        <activity android:name=".Activity.ComDetailActivity">
-
-
-
-        </activity>
+        <activity android:name=".Activity.ComDetailActivity"></activity>
+        <activity android:name=".Activity.SearchComsActivity"></activity>
     </application>
 
 </manifest>

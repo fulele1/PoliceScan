@@ -37,6 +37,13 @@
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
+
+        <ImageView
+            android:id="@+id/iv_coms_com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/click"/>
+
     </LinearLayout>
     <LinearLayout style="@style/common_horizontal_division_line_style" />
 
@@ -70,6 +77,8 @@
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
+
+
     </LinearLayout>
     <LinearLayout style="@style/common_horizontal_division_line_style" />
 
@@ -106,6 +115,8 @@
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
+
+
     </LinearLayout>
     <LinearLayout style="@style/common_horizontal_division_line_style" />
 

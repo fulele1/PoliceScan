@@ -473,9 +473,11 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     }
 
 
-    Map<String, Object> data;
-
-    public Map<String, Object> getOkConnection(String url){
+    /**
+     * ok进行网络请求
+     * @param url
+     */
+    public void getOkConnection(String url){
 
         OkHttpUtils
                 .get()
@@ -487,22 +489,12 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                         loadingDialog.dismiss();
                         showToast("网络访问异常");
                     }
-
                     @Override
                     public void onResponse(String s, int i) {
-                        if (s.startsWith("0")){
-                            loadingDialog.dismiss();
-                            String str = ChangeUtil.procRet(s);
-                            str = str.substring(1, str.length());
-                            data = GsonUtil.JsonToMap(str);
-                            mDataFinishedLinstern.dataFinishedLinstern(data);
-
-
-                        }else {
-                        }
+                        mDataFinishedLinstern.dataFinishedLinstern(s);
                     }
                 });
-        return data;
+
     }
     OnDataFinishedLinstern mDataFinishedLinstern;
     public void setOnDataFinishedLinstern(OnDataFinishedLinstern dataFinishedLinstern){
@@ -511,5 +503,5 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 }
 
 interface OnDataFinishedLinstern{
-    void dataFinishedLinstern(Map<String, Object> data);
+    void dataFinishedLinstern(String s);
 }

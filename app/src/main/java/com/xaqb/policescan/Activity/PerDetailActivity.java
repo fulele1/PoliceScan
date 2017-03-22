@@ -14,6 +14,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.ChangeUtil;
+import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
 import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.entity.Person;
@@ -78,19 +80,31 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     }
 
 
+
     @Override
-    public void dataFinishedLinstern(Map<String, Object> data) {
-        mTvCom.setText(data.get("expresstype").toString());
-        mTvName.setText(data.get("expresstype").toString());
-        mTvNum.setText(data.get("expresstype").toString());
-        mTvSix.setText(data.get("expresstype").toString());
-        mTvNational.setText(data.get("expresstype").toString());
-        mTvIde.setText(data.get("expresstype").toString());
-        mTvHome.setText(data.get("expresstype").toString());
-        mTvState.setText(data.get("expresstype").toString());
-        mTvGet.setText(data.get("expresstype").toString());
-        mTvPost.setText(data.get("expresstype").toString());
+    public void dataFinishedLinstern(String s) {
+        if (s.startsWith("0")){
+            //响应成功
+            loadingDialog.dismiss();
+            String str = ChangeUtil.procRet(s);
+            str = str.substring(1,str.length());
+            Map<String ,Object> data = GsonUtil.JsonToMap(str);
+            mTvCom.setText(data.get("expresstype").toString());
+            mTvName.setText(data.get("expresstype").toString());
+            mTvNum.setText(data.get("expresstype").toString());
+            mTvSix.setText(data.get("expresstype").toString());
+            mTvNational.setText(data.get("expresstype").toString());
+            mTvIde.setText(data.get("expresstype").toString());
+            mTvHome.setText(data.get("expresstype").toString());
+            mTvState.setText(data.get("expresstype").toString());
+            mTvGet.setText(data.get("expresstype").toString());
+            mTvPost.setText(data.get("expresstype").toString());
+        }else{
+            //响应失败
+        }
+
     }
+
 
     // 设置chart显示的样式
     private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
@@ -349,6 +363,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
 
         return mLineData;
     }
+
 
 
 }

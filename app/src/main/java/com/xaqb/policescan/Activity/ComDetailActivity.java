@@ -14,7 +14,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.ChangeUtil;
+import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Views.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +70,24 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     }
 
     @Override
-    public void dataFinishedLinstern(Map<String, Object> data) {
-        mTvCom.setText(data.get("expresstype").toString());
-        mTvPlice.setText(data.get("expresstype").toString());
-        mTvPer.setText(data.get("expresstype").toString());
-        mTvGet.setText(data.get("expresstype").toString());
-        mTvPost.setText(data.get("expresstype").toString());
+    public void dataFinishedLinstern(String s) {
+        if (s.startsWith("0")){
+            //响应成功
+            loadingDialog.dismiss();
+            String str = ChangeUtil.procRet(s);
+            str = str.substring(1,str.length());
+            Map<String,Object> data = GsonUtil.JsonToMap(str);
+            mTvCom.setText(data.get("expresstype").toString());
+            mTvPlice.setText(data.get("expresstype").toString());
+            mTvPer.setText(data.get("expresstype").toString());
+            mTvGet.setText(data.get("expresstype").toString());
+            mTvPost.setText(data.get("expresstype").toString());
+        }else{
+            //响应失败
+        }
     }
+
+
 
 
 
@@ -327,6 +341,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         LineData mLineData = new LineData(x, mLineDataSets);
         return mLineData;
     }
+
 
 
 }
