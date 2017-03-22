@@ -16,10 +16,10 @@ import java.util.List;
  * Created by lenovo on 2017/3/15.
  */
 
-public class MyAdapter extends BaseAdapter {
+public class PerAdapter extends BaseAdapter {
     private Context mContext;
     private List<Person> mPeople;
-    public MyAdapter(Context context, List<Person> people) {
+    public PerAdapter(Context context, List<Person> people) {
         mContext = context;
         mPeople = people;
     }

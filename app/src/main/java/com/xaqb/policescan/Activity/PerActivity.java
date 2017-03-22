@@ -8,27 +8,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xaqb.policescan.R;
-import com.xaqb.policescan.Utils.ChangeUtil;
-import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
-import com.xaqb.policescan.Utils.LogUtils;
-import com.xaqb.policescan.adapter.MyAdapter;
+import com.xaqb.policescan.adapter.PerAdapter;
 import com.xaqb.policescan.entity.Person;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.Call;
 
 public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
     private List<Person> mPeople;
     private PerActivity instance;
     private ListView mList;
     private TextView mCount;
-    private MyAdapter mAdapter;
+    private PerAdapter mAdapter;
     private String ide;
 
 
@@ -82,9 +76,7 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
             mPeople.add(person);
         }
         mCount.setText(mPeople.size()+"");
-        mAdapter = new MyAdapter(instance,mPeople);
+        mAdapter = new PerAdapter(instance,mPeople);
         mList.setAdapter(mAdapter);
     }
-
-
 }
