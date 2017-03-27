@@ -2,6 +2,7 @@ package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.google.gson.Gson;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
@@ -21,8 +23,13 @@ import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.entity.Person;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import static java.lang.StrictMath.E;
 
 public class PerDetailActivity extends BaseActivity implements OnDataFinishedLinstern{
 
@@ -37,18 +44,21 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     private TextView mTvState;
     private TextView mTvGet;
     private TextView mTvPost;
+    private List<Double> at;
+    private List<Double> dv;
+    private List<String> keys;
     @Override
     public void initTitleBar() {
         setTitle("人员详情");
         showBackwardView(true);
 
     }
-
+    LineChart chart;
     @Override
     public void initViews() {
         setContentView(R.layout.activity_per_detile);
         instance = this;
-        LineChart chart = (LineChart) findViewById(R.id.chart_per_de);
+        chart = (LineChart) findViewById(R.id.chart_per_de);
         mTvCom = (TextView) findViewById(R.id.txt_com_per_dt);
         mTvName = (TextView) findViewById(R.id.txt_name_per_dt);
         mTvNum = (TextView) findViewById(R.id.txt_num_per_dt);
@@ -60,25 +70,17 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvGet = (TextView) findViewById(R.id.txt_get_per_dt);
         mTvPost = (TextView) findViewById(R.id.txt_post_per_dt);
 
-        // 制作7个数据点（沿x坐标轴）
-        LineData mLineData = makeLineData(7);
-        setChartStyle(chart, mLineData, Color.WHITE);
-    }
 
+    }
     @Override
     public void initData() {
-        Intent intent = instance.getIntent();
-        String ide = intent.getStringExtra("ide");
-        LogUtils.i("---"+ide);
     }
 
     @Override
     public void addListener() {
         setOnDataFinishedLinstern(instance);
-        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");
-
+        getOkConnection(HttpUrlUtils.getHttpUrl().get_query_per_detail()+"&empcode="+instance.getIntent().getStringExtra("empcode"));
     }
-
 
 
     @Override
@@ -86,24 +88,67 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         if (s.startsWith("0")){
             //响应成功
             loadingDialog.dismiss();
-            String str = ChangeUtil.procRet(s);
-            str = str.substring(1,str.length());
-            Map<String ,Object> data = GsonUtil.JsonToMap(str);
-            mTvCom.setText(data.get("expresstype").toString());
-            mTvName.setText(data.get("expresstype").toString());
-            mTvNum.setText(data.get("expresstype").toString());
-            mTvSix.setText(data.get("expresstype").toString());
-            mTvNational.setText(data.get("expresstype").toString());
-            mTvIde.setText(data.get("expresstype").toString());
-            mTvHome.setText(data.get("expresstype").toString());
-            mTvState.setText(data.get("expresstype").toString());
-            mTvGet.setText(data.get("expresstype").toString());
-            mTvPost.setText(data.get("expresstype").toString());
+//            String str = ChangeUtil.procRet(s);
+//            str = str.substring(1,str.length());
+            String str = s.split(String.valueOf((char) 1))[1];
+            Map<String ,Object> data = GsonUtil.GsonToMaps(str);
+            mTvCom.setText(data.get("comname").toString());
+            mTvName.setText(data.get("empname").toString());
+            mTvNum.setText(data.get("empphone").toString());
+            mTvSix.setText(data.get("sexname").toString());
+            mTvNational.setText(data.get("nationname").toString());
+            mTvIde.setText(data.get("empcertcode").toString());
+            mTvHome.setText("");
+            mTvState.setText("");
+            getData(data);
+
         }else{
             //响应失败
         }
-
     }
+
+
+
+    Double atCount = 0.0;
+    Double dvCount = 0.0;
+    /**
+     * 解析count
+     * @param data
+     */
+    public void getData(Map<String ,Object> data){
+        Map<String ,Object> data2 = GsonUtil.GsonToMaps(data.get("data").toString());
+        at = new ArrayList<>();
+        dv = new ArrayList<>();
+        keys = new ArrayList<>();
+
+        Set<String> keySet = data2.keySet();
+        Iterator  iterator= keySet.iterator();
+        while (iterator.hasNext()) {
+            keys.add((String) iterator.next());
+        }
+
+        for(int i = 0;i<keys.size();i++){
+            Map<String ,Object> day = GsonUtil.GsonToMaps(data2.get(keys.get(i)).toString());
+            at.add((Double)day.get("atnum"));
+            dv.add((Double)day.get("dvnum"));
+        }
+
+        for (int i = 0;i<at.size();i++){
+            atCount +=at.get(i);
+        }
+
+        for (int i = 0;i<dv.size();i++){
+            dvCount +=dv.get(i);
+        }
+
+        mTvGet.setText(dvCount+"");
+        mTvPost.setText(atCount+"");
+
+        // 获取完数据之后 制作7个数据点（沿x坐标轴）
+        LineData mLineData = makeLineData(7);
+        setChartStyle(chart, mLineData, Color.WHITE);
+    }
+
 
 
     // 设置chart显示的样式
@@ -169,65 +214,33 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
      */
     private LineData makeLineData(int count) {
 
-        ArrayList<String> x = new ArrayList<String>();
-        x.add("星期一");
-        x.add("星期二");
-        x.add("星期三");
-        x.add("星期四");
-        x.add("星期五");
-        x.add("星期六");
-        x.add("星期日");
-
-//        for (int i = 0; i < count; i++) {
-//            // x轴显示的数据
-//            x.add("x:" + i);
-//        }
+        List<String> x = keys;
 
 
-        /**
-         * 需要的数据
-         */
-        List<Integer> yData = new ArrayList<>();
-        yData.add(10);
-        yData.add(1);
-        yData.add(18);
-        yData.add(6);
-        yData.add(2);
-        yData.add(19);
-        yData.add(25);
 
         //y轴的数据
         ArrayList<Entry> y = new ArrayList<>();
+        double dVal1=0.0d;
         for (int i = 0; i < count; i++) {
-            //float val = (float) (Math.random() * 100);
-            Entry entry = new Entry(yData.get(i), i);
+            dVal1=dv.get(i);
+            Entry entry = new Entry((float)dVal1, i);
             y.add(entry);
         }
 
-        /**
-         * 需要的数据
-         */
-        List<Integer> yData2 = new ArrayList<>();
-        yData2.add(100);
-        yData2.add(111);
-        yData2.add(99);
-        yData2.add(128);
-        yData2.add(175);
-        yData2.add(105);
-        yData2.add(85);
 
         //y轴的数据
         ArrayList<Entry> y2 = new ArrayList<>();
+        double dVal=0.0d;
         for (int i = 0; i < count; i++) {
-            //float val = (float) (Math.random() * 100);
-            Entry entry = new Entry(yData2.get(i), i);
+            dVal=at.get(i);
+            Entry entry = new Entry((float) dVal, i);
             y2.add(entry);
         }
 
 
 
         // y轴数据集
-        LineDataSet mLineDataSet = new LineDataSet(y, "员工一周收件数量折线图");
+        LineDataSet mLineDataSet = new LineDataSet(y, "员工一周收递数量折线图");
 
         // 用y轴的集合来设置参数
         // 线宽
@@ -290,7 +303,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         });
 
         // y轴数据集
-        LineDataSet mLineDataSet2 = new LineDataSet(y2, "员工一周寄件数量折线图");
+        LineDataSet mLineDataSet2 = new LineDataSet(y2, "员工一周投递数量折线图");
 
         // 用y轴的集合来设置参数
         // 线宽

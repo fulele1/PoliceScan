@@ -9,18 +9,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="#5890ff"
+        android:orientation="horizontal"
         >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/user"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            />
 
         <TextView
             android:id="@+id/tv_user_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="管理员001"
-            android:gravity="center"
-            android:layout_marginLeft="@dimen/abc_action_bar_content_inset_material"
-            android:drawableLeft="@mipmap/user"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
             />
     </LinearLayout>
 
@@ -36,18 +44,19 @@
 
         <EditText
             android:id="@+id/et_order_total"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@mipmap/edit"
             android:drawablePadding="10px"
             android:hint="@string/input_order_id"
             android:paddingLeft="10px"
             android:singleLine="true"
             android:drawableLeft="@mipmap/se"
             android:textColor="#000000"
-            android:textSize="@dimen/textview_small_size" />
+            android:textSize="@dimen/textview_small_size"
+            />
 
         <ImageView
             android:id="@+id/iv_zxing"
@@ -57,11 +66,54 @@
             android:src="@mipmap/zxing"
             android:layout_gravity="center"/>
             />
+
+
     </LinearLayout>
 
-    <LinearLayout style="@style/common_horizontal_division_line_style" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:padding="@dimen/abc_action_bar_content_inset_material"
+        >
 
+        <TextView
+            android:id="@+id/txt_modify_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="修改密码"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@null"
+            android:drawableTop="@mipmap/modify"
+            />
+
+        <TextView
+            android:id="@+id/txt_update_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检查更新"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@null"
+            android:drawableTop="@mipmap/update"
+            />
+
+        <TextView
+            android:id="@+id/txt_finish_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="退出"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:drawableTop="@mipmap/finish"
+            android:background="@null"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,11 +126,10 @@
             android:id="@+id/txt_per_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="快递员查询"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/btn_pressed"
+            android:background="@null"
             android:drawableTop="@mipmap/search"
             />
 
@@ -87,62 +138,30 @@
             android:id="@+id/txt_com_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="企业查询"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/btn_pressed"
+            android:background="@null"
             android:drawableTop="@mipmap/com"
             />
-
-
-
     </LinearLayout>
 
-
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.9" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="@dimen/abc_action_bar_content_inset_material"
-        >
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/ff7c7c7c"
+        android:text="西安千百网络科技有限公司@2017版权所有"
+        />
 
-        <TextView
-            android:id="@+id/txt_modify_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="修改密码"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@drawable/btn_pressed"
-            android:drawableTop="@mipmap/modify"
-            />
-
-        <TextView
-            android:id="@+id/txt_finish_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退出"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:drawableTop="@mipmap/fin"
-            android:background="@drawable/btn_pressed"
-            />
-
-
-        <TextView
-            android:id="@+id/txt_update_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="检查更新"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@drawable/btn_pressed"
-            android:drawableTop="@mipmap/update"
-            />
-    </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
 </LinearLayout>

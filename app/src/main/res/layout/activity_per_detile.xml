@@ -214,26 +214,29 @@
             </LinearLayout>
             <LinearLayout style="@style/common_horizontal_division_line_style" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.github.mikephil.charting.charts.LineChart
+
+                    android:id="@+id/chart_per_de"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="15dp"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1">
 
-        <com.github.mikephil.charting.charts.LineChart
-
-            android:id="@+id/chart_per_de"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:padding="15dp"
-            />
-    </LinearLayout>
 
 
 

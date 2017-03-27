@@ -6,6 +6,16 @@ package com.xaqb.policescan.entity;
 
 public class Company {
     private String com;//品牌名称
+    private String comCode;
+
+    public String getComCode() {
+        return comCode;
+    }
+
+    public void setComCode(String comCode) {
+        this.comCode = comCode;
+    }
+
     private String policeCount;//场所数量
     private String perCount;//从业人员数量
     private String getCount;//收件数量

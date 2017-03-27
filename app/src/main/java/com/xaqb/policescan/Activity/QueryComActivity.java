@@ -58,18 +58,13 @@ public class QueryComActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
 
-        String coms = mEdComs.getText().toString();
+        String comscode = mEdComs.getText().toString();
         String com = mEdCom.getText().toString();
-        String location = mEdLocation.getText().toString();
+
         switch (v.getId()) {
             case R.id.bt_query_com://查询按钮
-               if (!coms.equals("")){
-                   toIntent(coms);
-               }if (!com.equals("")){
-                   toIntent(com);
-               }if (!location.equals("")){
-                   toIntent(location);
-               }
+
+                toIntent(comscode,com);
                 break;
             case R.id.iv_coms_com://选择品牌
                 Intent intent = new Intent(instance,SearchComsActivity.class);
@@ -91,13 +86,10 @@ public class QueryComActivity extends BaseActivity {
         }
     }
 
-    public void toIntent(String string){
+    public void toIntent(String comscode,String com){
         Intent intent = new Intent(instance,ComActivity.class);
-        intent.putExtra("select",string);
+        intent.putExtra("comscode",comscode);
+        intent.putExtra("com",com);
         startActivity(intent);
     }
-
-
-
-
 }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
@@ -73,23 +74,18 @@ public class QueryPerActivity extends BaseActivity {
 
         switch (v.getId()){
             case R.id.bt_query_per://查询按钮
-                if (!com.equals("")){
-                    toIntent(com,PerActivity.class);
-                } if (!per.equals("")){
-                    toIntent(per,PerActivity.class);
-                } if (!phone.equals("")){
-                    toIntent(phone,PerActivity.class);
-                } if (!ide.equals("")){
-                    toIntent(phone,PerActivity.class);
-                }
+                toIntent(com,per,phone,ide,PerActivity.class);
                 break;
         }
     }
 
 
-    public void toIntent(String string,Class activity ){
+    public void toIntent(String com,String per,String phone,String ide,Class activity ){
         Intent intent = new Intent(instance,activity);
-        intent.putExtra("select",string);
+        intent.putExtra("com",com);
+        intent.putExtra("per",per);
+        intent.putExtra("phone",phone);
+        intent.putExtra("ide",ide);
         startActivity(intent);
     }
 

@@ -49,6 +49,7 @@ public class PerAdapter extends BaseAdapter {
             holder.tvSix = (TextView) view.findViewById(R.id.tv_six_per_list);
             holder.tvNum = (TextView) view.findViewById(R.id.tv_num_per_list);
             holder.tvIde = (TextView) view.findViewById(R.id.tv_ide_per_list);
+            holder.tvCom = (TextView) view.findViewById(R.id.tv_com_per_list);
             view.setTag(holder);
         }else{
             holder = (ViewHolder) view.getTag();
@@ -57,6 +58,7 @@ public class PerAdapter extends BaseAdapter {
         holder.tvSix.setText(mPeople.get(i).getSix());
         holder.tvNum.setText(mPeople.get(i).getNum());
         holder.tvIde.setText(mPeople.get(i).getIde());
+        holder.tvCom.setText(mPeople.get(i).getCom());
         return view;
     }
 }
@@ -65,4 +67,5 @@ class ViewHolder {
     TextView tvSix;
     TextView tvNum;
     TextView tvIde;
+    TextView tvCom;
 }

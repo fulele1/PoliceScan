@@ -6,6 +6,7 @@ package com.xaqb.policescan.entity;
 
 public class Person {
     private String name;//姓名
+    private String comeCode;//编号
     private String six;//性别
     private String num;//电话
     private String ide;//身份证
@@ -95,4 +96,14 @@ public class Person {
     public void setSix(String six) {
         this.six = six;
     }
+
+    public String getComeCode() {
+        return comeCode;
+    }
+
+    public void setComeCode(String comeCode) {
+        this.comeCode = comeCode;
+    }
+
+
 }

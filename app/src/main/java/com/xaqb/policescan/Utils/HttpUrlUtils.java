@@ -39,4 +39,27 @@ public class HttpUrlUtils {
         return getBaseUrl() + "smscode.json?";
     }
 
+    //快递员查询
+    // http://xawz.xaqianbai.net:8090/open.ashx?action=policeemployees
+    public String get_query_per() {
+        return getBaseUrl() + "?action=policeemployees";
+    }
+
+    //快递员详情查询
+    // http://xawz.xaqianbai.net:8090/open.ashx?action=policeemployeeinfo&empcode=A0161011400011201611250004
+    public String get_query_per_detail() {
+        return getBaseUrl() + "?action=policeemployeeinfo";
+    }
+    //企业查询
+    // http://xawz.xaqianbai.net:8090/open.ashx?action=policecompanies
+    public String get_query_com() {
+        return getBaseUrl() + "?action=policecompanies";
+    }
+
+    //企业查询详情
+    // http://xawz.xaqianbai.net:8090/open.ashx?action=policecompanyinfo&comcode=A0161011300078
+    public String get_query_com_detail() {
+        return getBaseUrl() + "?action=policecompanyinfo";
+    }
+
 }

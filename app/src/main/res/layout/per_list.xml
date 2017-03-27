@@ -16,19 +16,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="张三"/>
+            />
         <TextView
             android:id="@+id/tv_six_per_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="男"/>
+            />
         <TextView
             android:id="@+id/tv_num_per_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="12345678965"/>
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业名称："/>
+        <TextView
+            android:id="@+id/tv_com_per_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -41,12 +58,12 @@
             android:id="@+id/tv_i_per_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="证件号："/>
+            android:text="证  件  号："/>
         <TextView
             android:id="@+id/tv_ide_per_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="610422199411162229"/>
+            />
     </LinearLayout>
 </LinearLayout>

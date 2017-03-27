@@ -140,7 +140,7 @@ public class QueryActivity extends BaseActivity {
                                 mTvName.setText(data.get("name").toString());//物品名称
                                 mTvMancertCode.setText(data.get("mancertcode").toString());//证件号码
                                 mTvTime.setText(data.get("mantime").toString());//时间
-                                mTvAddress.setText(data.get("manaddress").toString());//收寄地址
+                                mTvAddress.setText(data.get("address").toString());//收寄地址
                                 mTvPhone.setText(data.get("manphone").toString());//联系电话
                                 mTvDestPhone.setText(data.get("destphone").toString());//收件人电话（只在收寄时有该字段）
                                 mTvCompany.setText(data.get("comname").toString());//公司名称

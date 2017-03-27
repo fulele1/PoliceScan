@@ -2,6 +2,7 @@ package com.xaqb.policescan.Activity;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -44,9 +45,13 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
 
     @Override
     public void initData() {
+    }
+
+    public String getData(){
         Intent intent = instance.getIntent();
-        String select = intent.getStringExtra("select");
-        LogUtils.i("-----"+select);
+        String comscode = intent.getStringExtra("comscode");
+        String com = intent.getStringExtra("com");
+        return "&combrand="+comscode+"&comname="+com;
     }
 
     /**
@@ -54,20 +59,8 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
      */
     @Override
     public void addListener() {
-
-        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");//进行网络连接
+        getOkConnection(HttpUrlUtils.getHttpUrl().get_query_com()+getData());//进行网络连接
         this.setOnDataFinishedLinstern(instance);
-        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                Intent intent = new Intent(instance,ComDetailActivity.class);
-                intent.putExtra("coms",mCompanys.get(i).getCom());
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override
@@ -78,16 +71,27 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
             loadingDialog.dismiss();
             String str = ChangeUtil.procRet(s);
             str = str.substring(1,str.length());
-            Map<String ,Object> data = GsonUtil.JsonToMap(str);
+            List<Map<String ,Object>> data = GsonUtil.GsonToListMaps(str);
+            for (int i = 0;i<data.size();i++){
             Company company = new Company();
-            company.setCom(data.get("mancertcode").toString());
+            company.setCom(data.get(i).get("comname").toString());
+            company.setComCode(data.get(i).get("comcode").toString());
             mCompanys.add(company);
+            }
         }else{
             //响应失败
         }
         comAdapter = new ComAdapter(instance,mCompanys);
         mList.setAdapter(comAdapter);//设置适配器
         mTvCount.setText(""+mCompanys.size());
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(instance,ComDetailActivity.class);
+                intent.putExtra("comcode",mCompanys.get(i).getComCode());
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -62,16 +62,18 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashReport.initCrashReport(getApplicationContext());
+        CrashReport.initCrashReport(getApplicationContext()) ;
 
+        //全屏显示
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        /*沉浸式状态栏*/
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.colorPrimaryDark);//通知栏所需颜色
-        }
+//        /*沉浸式状态栏*/
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            setTranslucentStatus(true);
+//            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+//            tintManager.setStatusBarTintEnabled(true);
+//            tintManager.setStatusBarTintResource(R.color.colorstate);//通知栏所需颜色
+//        }
 
 
         AppManager.getAppManager().addActivity(this);
@@ -89,18 +91,18 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         }
     }
 
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
+//    @TargetApi(19)
+//    private void setTranslucentStatus(boolean on) {
+//        Window win = getWindow();
+//        WindowManager.LayoutParams winParams = win.getAttributes();
+//        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+//        if (on) {
+//            winParams.flags |= bits;
+//        } else {
+//            winParams.flags &= ~bits;
+//        }
+//        win.setAttributes(winParams);
+//    }
 
     public TextView getmForwardButton() {
         return tv_forward;

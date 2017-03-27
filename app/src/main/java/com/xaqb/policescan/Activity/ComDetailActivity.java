@@ -3,6 +3,7 @@ package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -17,11 +18,14 @@ import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.Views.LoadingDialog;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ComDetailActivity extends BaseActivity implements OnDataFinishedLinstern{
     private ComDetailActivity instance;
@@ -30,6 +34,10 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     private TextView mTvPer;
     private TextView mTvGet;
     private TextView mTvPost;
+    private List<Double> at;
+    private List<Double> dv;
+    private List<String> keys;
+    private LineChart chart;
 
 
     @Override
@@ -44,7 +52,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         setContentView(R.layout.activity_com_detail);
         instance = this;
 
-        LineChart chart = (LineChart) findViewById(R.id.chart_com_de);
+        chart = (LineChart) findViewById(R.id.chart_com_de);
         mTvCom = (TextView) findViewById(R.id.txt_com_com_dt);
         mTvPlice = (TextView) findViewById(R.id.txt_plice_com_dt);
         mTvPer = (TextView) findViewById(R.id.txt_per_com_dt);
@@ -53,35 +61,39 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
 
 
         // 制作7个数据点（沿x坐标轴）
-        LineData mLineData = makeLineData(7);
-        setChartStyle(chart, mLineData, Color.WHITE);
+//        LineData mLineData = makeLineData(7);
+//        setChartStyle(chart, mLineData, Color.WHITE);
     }
 
     @Override
     public void initData() {
-        Intent intent = instance.getIntent();
-        intent.getStringExtra("coms");
     }
 
     @Override
     public void addListener() {
         setOnDataFinishedLinstern(instance);
-        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");
+        getOkConnection(HttpUrlUtils.getHttpUrl().get_query_com_detail()+ "&comcode="+instance.getIntent().getStringExtra("comcode"));
     }
+
 
     @Override
     public void dataFinishedLinstern(String s) {
+        LogUtils.i("return -s =",s);
         if (s.startsWith("0")){
             //响应成功
             loadingDialog.dismiss();
-            String str = ChangeUtil.procRet(s);
-            str = str.substring(1,str.length());
-            Map<String,Object> data = GsonUtil.JsonToMap(str);
-            mTvCom.setText(data.get("expresstype").toString());
-            mTvPlice.setText(data.get("expresstype").toString());
-            mTvPer.setText(data.get("expresstype").toString());
-            mTvGet.setText(data.get("expresstype").toString());
-            mTvPost.setText(data.get("expresstype").toString());
+//            String str = ChangeUtil.procRet(s);
+//            str = str.substring(1,str.length());
+            String str = s.split(String.valueOf((char) 1))[1];
+            LogUtils.i("return -sttr =",str);
+            Map<String,Object> data = GsonUtil.GsonToMaps(str);
+            LogUtils.i("return -data =",data.toString());
+            mTvCom.setText(data.get("comname").toString());
+            mTvPlice.setText(data.get("comaddress").toString());
+            mTvPer.setText("");
+            getData(data);
+            Log.i("---data",data.toString());
+
         }else{
             //响应失败
         }
@@ -89,62 +101,46 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
 
 
 
+    Double atCount = 0.0;
+    Double dvCount = 0.0;
+    /**
+     * 解析count
+     * @param data
+     */
+    public void getData(Map<String ,Object> data){
+        Map<String ,Object> data2 = GsonUtil.GsonToMaps(data.get("data").toString());
+        Log.i("---data2",data.toString());
+        at = new ArrayList<>();
+        dv = new ArrayList<>();
 
+        keys = new ArrayList<>();
 
-    // 设置chart显示的样式
-    private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
-        // 是否在折线图上添加边框
-        mLineChart.setDrawBorders(false);
+        Set<String> keySet = data2.keySet();
+        Iterator iterator= keySet.iterator();
+        while (iterator.hasNext()) {
+            keys.add((String) iterator.next());
+        }
 
-        mLineChart.setDescription("收件数量");// 数据描述
+        for(int i = 0;i<keys.size();i++){
+            Map<String ,Object> day = GsonUtil.GsonToMaps(data2.get(keys.get(i)).toString());
+            at.add((Double)day.get("atnum"));
+            dv.add((Double)day.get("dvnum"));
+        }
 
-        // 如果没有数据的时候，会显示这个，类似listview的emtpyview
-        mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
+        for (int i = 0;i<at.size();i++){
+            atCount +=at.get(i);
+        }
 
-        // 是否绘制背景颜色。
-        // 如果mLineChart.setDrawGridBackground(false)，
-        // 那么mLineChart.setGridBackgroundColor(Color.CYAN)将失效;
-        mLineChart.setDrawGridBackground(false);
-        mLineChart.setGridBackgroundColor(Color.CYAN);
+        for (int i = 0;i<dv.size();i++){
+            dvCount +=dv.get(i);
+        }
 
-        // 触摸
-        mLineChart.setTouchEnabled(true);
+        mTvGet.setText(dvCount+"");
+        mTvPost.setText(atCount+"");
 
-        // 拖拽
-        mLineChart.setDragEnabled(true);
-
-        // 缩放
-        mLineChart.setScaleEnabled(true);
-
-        mLineChart.setPinchZoom(false);
-        // 隐藏右边 的坐标轴
-        mLineChart.getAxisRight().setEnabled(false);
-        // 让x轴在下面
-        mLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-
-        // // 隐藏左边坐标轴横网格线
-        // mLineChart.getAxisLeft().setDrawGridLines(false);
-        // // 隐藏右边坐标轴横网格线
-        // mLineChart.getAxisRight().setDrawGridLines(false);
-        // // 隐藏X轴竖网格线
-        // mLineChart.getXAxis().setDrawGridLines(false);
-
-        // 设置背景
-        mLineChart.setBackgroundColor(color);
-
-        // 设置x,y轴的数据
-        mLineChart.setData(lineData);
-
-        // 设置比例图标示，就是那个一组y的value的
-        Legend mLegend = mLineChart.getLegend();
-
-        mLegend.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
-        mLegend.setForm(Legend.LegendForm.CIRCLE);// 样式
-        mLegend.setFormSize(15.0f);// 字体
-        mLegend.setTextColor(Color.BLUE);// 颜色
-
-        // 沿x轴动画，时间2000毫秒。
-        mLineChart.animateX(2000);
+        // 获取完数据之后 制作7个数据点（沿x坐标轴）
+        LineData mLineData = makeLineData(7);
+        setChartStyle(chart, mLineData, Color.WHITE);
     }
 
 
@@ -155,62 +151,34 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
      */
     private LineData makeLineData(int count) {
 
-        ArrayList<String> x = new ArrayList<String>();
-        x.add("星期一");
-        x.add("星期二");
-        x.add("星期三");
-        x.add("星期四");
-        x.add("星期五");
-        x.add("星期六");
-        x.add("星期日");
-
-//        for (int i = 0; i < count; i++) {
-//            // x轴显示的数据
-//            x.add("x:" + i);
-//        }
+        List<String> x = keys;
 
 
-        /**
-         * 需要的数据
-         */
-        List<Integer> yData = new ArrayList<>();
-        yData.add(1000);
-        yData.add(1111);
-        yData.add(923);
-        yData.add(876);
-        yData.add(1400);
-        yData.add(1200);
-        yData.add(738);
-
-
-        List<Integer> yData2 = new ArrayList<>();
-        yData2.add(12);
-        yData2.add(50);
-        yData2.add(31);
-        yData2.add(28);
-        yData2.add(49);
-        yData2.add(21);
-        yData2.add(17);
-
-         //y轴的数据
+        //y轴的数据
         ArrayList<Entry> y = new ArrayList<>();
+        double dVal1=0.0d;
         for (int i = 0; i < count; i++) {
-            //float val = (float) (Math.random() * 100);
-            Entry entry = new Entry(yData.get(i), i);
+            dVal1=dv.get(i);
+            Entry entry = new Entry((float)dVal1, i);
             y.add(entry);
         }
 
 
         //y轴的数据
         ArrayList<Entry> y2 = new ArrayList<>();
+        double dVal=0.0d;
         for (int i = 0; i < count; i++) {
-            //float val = (float) (Math.random() * 100);
-            Entry entry = new Entry(yData2.get(i), i);
+            dVal=at.get(i);
+            Entry entry = new Entry((float) dVal, i);
             y2.add(entry);
         }
 
+
+
+
+
 // y轴数据集
-        LineDataSet mLineDataSet2 = new LineDataSet(y2, "企业一周收件数量折线图");
+        LineDataSet mLineDataSet2 = new LineDataSet(y2, "企业一周投递数量折线图");
 
         // 用y轴的集合来设置参数
         // 线宽
@@ -273,7 +241,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         });
 
         // y轴数据集
-        LineDataSet mLineDataSet = new LineDataSet(y, "企业一周收件数量折线图");
+        LineDataSet mLineDataSet = new LineDataSet(y, "企业一周收递数量折线图");
 
         // 用y轴的集合来设置参数
         // 线宽
@@ -342,6 +310,64 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         return mLineData;
     }
 
+
+
+
+    // 设置chart显示的样式
+    private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
+        // 是否在折线图上添加边框
+        mLineChart.setDrawBorders(false);
+
+        mLineChart.setDescription("收件数量");// 数据描述
+
+        // 如果没有数据的时候，会显示这个，类似listview的emtpyview
+        mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
+
+        // 是否绘制背景颜色。
+        // 如果mLineChart.setDrawGridBackground(false)，
+        // 那么mLineChart.setGridBackgroundColor(Color.CYAN)将失效;
+        mLineChart.setDrawGridBackground(false);
+        mLineChart.setGridBackgroundColor(Color.CYAN);
+
+        // 触摸
+        mLineChart.setTouchEnabled(true);
+
+        // 拖拽
+        mLineChart.setDragEnabled(true);
+
+        // 缩放
+        mLineChart.setScaleEnabled(true);
+
+        mLineChart.setPinchZoom(false);
+        // 隐藏右边 的坐标轴
+        mLineChart.getAxisRight().setEnabled(false);
+        // 让x轴在下面
+        mLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        // // 隐藏左边坐标轴横网格线
+        // mLineChart.getAxisLeft().setDrawGridLines(false);
+        // // 隐藏右边坐标轴横网格线
+        // mLineChart.getAxisRight().setDrawGridLines(false);
+        // // 隐藏X轴竖网格线
+        // mLineChart.getXAxis().setDrawGridLines(false);
+
+        // 设置背景
+        mLineChart.setBackgroundColor(color);
+
+        // 设置x,y轴的数据
+        mLineChart.setData(lineData);
+
+        // 设置比例图标示，就是那个一组y的value的
+        Legend mLegend = mLineChart.getLegend();
+
+        mLegend.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+        mLegend.setForm(Legend.LegendForm.CIRCLE);// 样式
+        mLegend.setFormSize(15.0f);// 字体
+        mLegend.setTextColor(Color.BLUE);// 颜色
+
+        // 沿x轴动画，时间2000毫秒。
+        mLineChart.animateX(2000);
+    }
 
 
 }

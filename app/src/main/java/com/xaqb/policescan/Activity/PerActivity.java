@@ -2,6 +2,7 @@ package com.xaqb.policescan.Activity;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -46,24 +47,24 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
 
     @Override
     public void initData() {
-        Intent intent = instance.getIntent();
-        String select = intent.getStringExtra("select");
+
     }
+
+    public String getData(){
+        Intent intent = instance.getIntent();
+        String com = intent.getStringExtra("com");
+        String per = intent.getStringExtra("per");
+        String phone = intent.getStringExtra("phone");
+        String ide = intent.getStringExtra("ide");
+        return "&comname="+com+"&name="+per+"&mp="+phone+"&cert="+ide;
+    }
+
 
     @Override
     public void addListener() {
 
         setOnDataFinishedLinstern(instance);
-        getOkConnection(HttpUrlUtils.getHttpUrl().quer_yCode()+ "&code=123456");
-
-        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(instance,PerDetailActivity.class);
-                intent.putExtra("ide",mPeople.get(i).getIde());
-                startActivity(intent);
-            }
-        });
+        getOkConnection(HttpUrlUtils.getHttpUrl().get_query_per()+getData());
     }
 
     @Override
@@ -74,22 +75,30 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
             loadingDialog.dismiss();
             String str = ChangeUtil.procRet(s);
             str = str.substring(1,str.length());
-            Map<String ,Object> data = GsonUtil.JsonToMap(str);
+            List<Map<String ,Object>> data = GsonUtil.GsonToListMaps(str);
+            for (int i = 0;i < data.size();i++){
             Person person = new Person();
-            person.setName(data.get("expresstype").toString());
-            person.setSix(data.get("expresstype").toString());
-            person.setNum(data.get("manphone").toString());
-            person.setIde(data.get("mancertcode").toString());
-//            person.setName(data.get("empname").toString());
-//            person.setSix(data.get("empsex").toString());
-//            person.setNum(data.get("empcertcode").toString());
-//            person.setIde(data.get("empcode").toString());
+            person.setName(data.get(i).get("empname").toString());
+            person.setSix(data.get(i).get("sexname").toString());
+            person.setNum(data.get(i).get("empphone").toString());
+            person.setIde(data.get(i).get("empcertcode").toString());
+            person.setComeCode(data.get(i).get("empcode").toString());
+            person.setCom(data.get(i).get("comname").toString());
             mPeople.add(person);
+            }
         }else{
             //响应失败
         }
         mCount.setText(mPeople.size()+"");
         mAdapter = new PerAdapter(instance,mPeople);
         mList.setAdapter(mAdapter);
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(instance,PerDetailActivity.class);
+                intent.putExtra("empcode",mPeople.get(i).getComeCode());
+                startActivity(intent);
+            }
+        });
     }
 }

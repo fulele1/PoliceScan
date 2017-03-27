@@ -22,10 +22,11 @@ public class TotalActivity extends BaseActivity {
     private TextView mTxtFinish;
     private TextView mTxtUser;
     private ImageView ivZxing;
+
     private EditText etOrderNum;
     @Override
     public void initTitleBar() {
-        setTitle("警用快递查询");
+        setTitle("寄递物流业警用查询系统");
         showBackwardView(false);
 
     }
