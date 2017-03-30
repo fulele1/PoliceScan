@@ -11,6 +11,7 @@
     android:orientation="vertical"
     tools:context="com.xaqb.policescan.Activity.SearchComsActivity">
 
+
     <ListView
         android:id="@+id/list_search"
         android:layout_width="match_parent"

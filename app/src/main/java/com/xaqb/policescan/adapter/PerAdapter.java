@@ -1,6 +1,7 @@
 package com.xaqb.policescan.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class PerAdapter extends BaseAdapter {
         if (view==null){
             holder = new ViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.per_list,null);
+
             holder.tvName = (TextView) view.findViewById(R.id.tv_name_per_list);
             holder.tvSix = (TextView) view.findViewById(R.id.tv_six_per_list);
             holder.tvNum = (TextView) view.findViewById(R.id.tv_num_per_list);

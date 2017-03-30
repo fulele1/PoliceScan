@@ -27,6 +27,7 @@
         <EditText
             android:id="@+id/et_oldpwd_find"
             android:layout_width="0dp"
+            android:inputType="textPassword"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
@@ -37,9 +38,6 @@
             android:paddingLeft="10px"
             android:textSize="@dimen/textview_small_size" />
     </LinearLayout>
-
-    <LinearLayout style="@style/common_horizontal_division_line_style" />
-
 
     <LinearLayout style="@style/common_horizontal_division_line_style" />
 

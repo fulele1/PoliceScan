@@ -121,8 +121,8 @@ public class LoginActivity extends BaseActivity {
                             //0{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}000
                             if (s.startsWith("0")) {
                                 //suc
-                                String str = ChangeUtil.procRet(s);//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
-                                str = str.substring(1, str.length());
+                                String str = ChangeUtil.procRet(s);
+                                str = str.substring(1, str.length());//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
                                 LogUtils.i(str);
                                 Map<String, Object> data = GsonUtil.JsonToMap(str);
                                 LogUtils.i(data.toString());LogUtils.i(data.get("policeid").toString());

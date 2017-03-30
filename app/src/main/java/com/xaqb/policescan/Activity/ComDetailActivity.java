@@ -1,10 +1,9 @@
 package com.xaqb.policescan.Activity;
 
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -15,11 +14,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
-import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
 import com.xaqb.policescan.Utils.LogUtils;
-import com.xaqb.policescan.Views.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,6 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 企业详情列表
+ */
 public class ComDetailActivity extends BaseActivity implements OnDataFinishedLinstern{
     private ComDetailActivity instance;
     private TextView mTvCom;
@@ -38,6 +38,8 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     private List<Double> dv;
     private List<String> keys;
     private LineChart chart;
+    private Double atCount = 0.0;
+    private Double dvCount = 0.0;
 
 
     @Override
@@ -58,11 +60,6 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvPer = (TextView) findViewById(R.id.txt_per_com_dt);
         mTvGet = (TextView) findViewById(R.id.txt_get_com_dt);
         mTvPost = (TextView) findViewById(R.id.txt_post_com_dt);
-
-
-        // 制作7个数据点（沿x坐标轴）
-//        LineData mLineData = makeLineData(7);
-//        setChartStyle(chart, mLineData, Color.WHITE);
     }
 
     @Override
@@ -81,7 +78,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         LogUtils.i("return -s =",s);
         if (s.startsWith("0")){
             //响应成功
-            loadingDialog.dismiss();
+//            //去除char的另一种方法
 //            String str = ChangeUtil.procRet(s);
 //            str = str.substring(1,str.length());
             String str = s.split(String.valueOf((char) 1))[1];
@@ -90,29 +87,24 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
             LogUtils.i("return -data =",data.toString());
             mTvCom.setText(data.get("comname").toString());
             mTvPlice.setText(data.get("comaddress").toString());
-            mTvPer.setText("");
+            mTvPer.setText(data.get("empnum").toString());
             getData(data);
-            Log.i("---data",data.toString());
-
         }else{
             //响应失败
+            Toast.makeText(instance, "未查询到有效数据", Toast.LENGTH_SHORT).show();
         }
+
+        loadingDialog.dismiss();
     }
 
-
-
-    Double atCount = 0.0;
-    Double dvCount = 0.0;
     /**
      * 解析count
      * @param data
      */
     public void getData(Map<String ,Object> data){
         Map<String ,Object> data2 = GsonUtil.GsonToMaps(data.get("data").toString());
-        Log.i("---data2",data.toString());
         at = new ArrayList<>();
         dv = new ArrayList<>();
-
         keys = new ArrayList<>();
 
         Set<String> keySet = data2.keySet();
@@ -153,7 +145,6 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
 
         List<String> x = keys;
 
-
         //y轴的数据
         ArrayList<Entry> y = new ArrayList<>();
         double dVal1=0.0d;
@@ -175,8 +166,6 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
 
 
 
-
-
 // y轴数据集
         LineDataSet mLineDataSet2 = new LineDataSet(y2, "企业一周投递数量折线图");
 
@@ -188,7 +177,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         mLineDataSet2.setCircleSize(5.0f);
 
         // 折线的颜色
-        mLineDataSet2.setColor(Color.RED);
+        mLineDataSet2.setColor(Color.DKGRAY);
 
         // 圆球的颜色
         mLineDataSet2.setCircleColor(Color.GREEN);
@@ -234,8 +223,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
                 // TODO Auto-generated method stub
                 int n = (int) value;
-                // String s = "y:" + n;
-                String s = "";
+                 String s = "" + n;
                 return s;
             }
         });
@@ -251,7 +239,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         mLineDataSet.setCircleSize(5.0f);
 
         // 折线的颜色
-        mLineDataSet.setColor(Color.DKGRAY);
+        mLineDataSet.setColor(Color.RED);
 
         // 圆球的颜色
         mLineDataSet.setCircleColor(Color.GREEN);
@@ -297,8 +285,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
                 // TODO Auto-generated method stub
                 int n = (int) value;
-               // String s = "y:" + n;
-                String s = "";
+                String s = "" + n;
                 return s;
             }
         });
@@ -311,14 +298,17 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     }
 
 
-
-
-    // 设置chart显示的样式
+    /**
+     * 设置chart显示的样式
+     * @param mLineChart
+     * @param lineData
+     * @param color
+     */
     private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
         // 是否在折线图上添加边框
         mLineChart.setDrawBorders(false);
 
-        mLineChart.setDescription("收件数量");// 数据描述
+        mLineChart.setDescription("数量");// 数据描述
 
         // 如果没有数据的时候，会显示这个，类似listview的emtpyview
         mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
@@ -368,6 +358,5 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         // 沿x轴动画，时间2000毫秒。
         mLineChart.animateX(2000);
     }
-
 
 }

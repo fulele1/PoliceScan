@@ -48,15 +48,26 @@ public class ComAdapter extends BaseAdapter{
             holder = new MyViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.com_list,null);
             holder.tvCom = (TextView) view.findViewById(R.id.tv_com_com_list);
+            holder.tvPer = (TextView) view.findViewById(R.id.tv_per_com_list);
+            holder.tvNum = (TextView) view.findViewById(R.id.tv_num_com_list);
+            holder.tvComs = (TextView) view.findViewById(R.id.tv_coms_com_list);
+            holder.tvPlice = (TextView) view.findViewById(R.id.tv_ide_per_list);
             view.setTag(holder);
         }else{
             holder = (MyViewHolder) view.getTag();
         }
         holder.tvCom.setText(mCompany.get(i).getCom());
-
+        holder.tvPer.setText(mCompany.get(i).getPer());
+        holder.tvNum.setText(mCompany.get(i).getNum());
+        holder.tvComs.setText(mCompany.get(i).getComs());
+        holder.tvPlice.setText(mCompany.get(i).getAddress());
         return view;
     }
 }
 class MyViewHolder {
     TextView tvCom;
+    TextView tvPer;
+    TextView tvNum;
+    TextView tvComs;
+    TextView tvPlice;
 }

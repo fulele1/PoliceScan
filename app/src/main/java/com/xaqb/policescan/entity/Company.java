@@ -5,8 +5,52 @@ package com.xaqb.policescan.entity;
  */
 
 public class Company {
-    private String com;//品牌名称
-    private String comCode;
+    private String com;//企业名称
+    private String coms;//品牌名称
+    private String comCode;//企业编码
+    private String policeCount;//场所数量
+    private String perCount;//从业人员数量
+    private String getCount;//收件数量
+    private String per;//企业负责人
+    private String num;//企业负责人电话
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPer() {
+        return per;
+    }
+
+    public void setPer(String per) {
+        this.per = per;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
+
+    private String address;//企业地址
+    private String postCount;//投件数量
+
+
+
+    public String getComs() {
+        return coms;
+    }
+
+    public void setComs(String coms) {
+        this.coms = coms;
+    }
+
 
     public String getComCode() {
         return comCode;
@@ -16,10 +60,7 @@ public class Company {
         this.comCode = comCode;
     }
 
-    private String policeCount;//场所数量
-    private String perCount;//从业人员数量
-    private String getCount;//收件数量
-    private String postCount;//投件数量
+
 
     public String getPoliceCount() {
         return policeCount;

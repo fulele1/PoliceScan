@@ -7,25 +7,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.xaqb.policescan.R;
 
 
+/**
+ * 企业查询界面
+ */
 public class QueryComActivity extends BaseActivity {
     private QueryComActivity instance;
     private Button mBtQuery;
     private ImageView mIvComs;
     private EditText mEdComs;
     private EditText mEdCom;
-    private EditText mEdLocation;
-
 
     @Override
     public void initTitleBar() {
         setTitle("企业查询");
         showBackwardView(true);
     }
-
 
     @Override
     public void initViews() {
@@ -39,10 +40,7 @@ public class QueryComActivity extends BaseActivity {
         mIvComs = (ImageView) findViewById(R.id.iv_coms_com);
         mEdComs = (EditText) findViewById(R.id.et_coms_com);
         mEdCom = (EditText) findViewById(R.id.et_com_com);
-        mEdLocation = (EditText) findViewById(R.id.et_location_com);
-
     }
-
 
     @Override
     public void initData() {
@@ -60,18 +58,22 @@ public class QueryComActivity extends BaseActivity {
 
         String comscode = mEdComs.getText().toString();
         String com = mEdCom.getText().toString();
-
         switch (v.getId()) {
             case R.id.bt_query_com://查询按钮
-
-                toIntent(comscode,com);
+                if (comscode.equals("")&&com.equals("")){
+                    showToast("请输入查询条件");
+                }else if (comscode.equals("")&&!com.equals("")){
+                    toIntent(comscode,com);
+                }
+                else{
+                    toIntent(comscode.substring(0,comscode.indexOf("-")),com);
+                }
                 break;
             case R.id.iv_coms_com://选择品牌
                 Intent intent = new Intent(instance,SearchComsActivity.class);
                 startActivityForResult(intent,2);
                 break;
         }
-
     }
 
     @Override
@@ -81,7 +83,8 @@ public class QueryComActivity extends BaseActivity {
             Bundle bundle = data.getExtras();
             if (bundle != null) {
                 String result = bundle.getString("coms");
-                mEdComs.setText(result);
+                String code = bundle.getString("code");
+                mEdComs.setText(code+"-"+result);
             }
         }
     }

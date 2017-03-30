@@ -3,7 +3,7 @@
     android:id="@+id/layout_titlebar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_height"
-    android:background="#5890ff"
+    android:background="@mipmap/ba"
     android:orientation="horizontal">
 
     <TextView
@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:ellipsize="marquee"
+        android:textStyle="bold"
         android:gravity="center_horizontal|center"
         android:singleLine="true"
         android:textColor="#000000"

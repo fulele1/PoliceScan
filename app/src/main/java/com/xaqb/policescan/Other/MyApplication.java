@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.tencent.bugly.crashreport.CrashReport;
+import com.xaqb.policescan.Utils.ProcUnit;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
@@ -18,15 +19,17 @@ import okhttp3.OkHttpClient;
  */
 
 public class MyApplication  extends Application{
+    public static String versionName;
     public static Context instance;
     @Override
     public void onCreate() {
         super.onCreate();
+        versionName = ProcUnit.getVersionName(getApplicationContext());
         instance = getApplicationContext();
         CrashReport.initCrashReport(getApplicationContext());
         CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new LoggerInterceptor("expresscn"))
+                .addInterceptor(new LoggerInterceptor("police"))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 //其他配置

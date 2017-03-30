@@ -60,8 +60,8 @@
         </activity>
         <activity
             android:name=".Activity.LoginActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".Activity.QueryActivity"
             android:screenOrientation="portrait" />
@@ -82,8 +82,9 @@
         <activity android:name=".Activity.PerActivity" />
         <activity android:name=".Activity.FinishActivity" />
         <activity android:name=".Activity.PerDetailActivity" />
-        <activity android:name=".Activity.ComDetailActivity"></activity>
-        <activity android:name=".Activity.SearchComsActivity"></activity>
+        <activity android:name=".Activity.ComDetailActivity" />
+        <activity android:name=".Activity.SearchComsActivity" />
+        <activity android:name=".Activity.UpdateActivity"></activity>
     </application>
 
 </manifest>

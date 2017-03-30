@@ -95,9 +95,8 @@ public class FindKeyActivity extends BaseActivity {
 //            ajax(requestParams, HttpUrlUtils.getHttpUrl().reset_password());
 //            LogUtils.i(HttpUrlUtils.getHttpUrl().reset_password());
 
-
-            LogUtils.i(HttpUrlUtils.getHttpUrl().back_password());
             loadingDialog.show("正在修改");
+
             OkHttpUtils
                     .get()
                     .url(HttpUrlUtils.getHttpUrl().back_password() + "&old=" + oldmd5 + "&new=" + pswmd5)

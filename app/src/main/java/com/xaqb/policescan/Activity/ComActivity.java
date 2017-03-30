@@ -2,11 +2,13 @@ package com.xaqb.policescan.Activity;
 
 
 import android.content.Intent;
-import android.util.Log;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
@@ -15,12 +17,15 @@ import com.xaqb.policescan.Utils.HttpUrlUtils;
 import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.adapter.ComAdapter;
 import com.xaqb.policescan.entity.Company;
-import com.xaqb.policescan.entity.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ *查询出的企业列表界面
+ */
 public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
     private ListView mList;
     private TextView mTvCount;
@@ -40,6 +45,8 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
         setContentView(R.layout.activity_com);
         instance = this;
         mList = (ListView) findViewById(R.id.list_com);
+        mList.setDivider(new ColorDrawable(Color.GRAY));
+        mList.setDividerHeight(1);
         mTvCount = (TextView) findViewById(R.id.tv_count_com_list);
     }
 
@@ -47,12 +54,19 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
     public void initData() {
     }
 
+
+    /**
+     *
+     * @return 返回详情接口的参数
+     */
     public String getData(){
         Intent intent = instance.getIntent();
         String comscode = intent.getStringExtra("comscode");
+        LogUtils.i("======"+comscode);
         String com = intent.getStringExtra("com");
         return "&combrand="+comscode+"&comname="+com;
     }
+
 
     /**
      * 增加事件处理
@@ -63,12 +77,16 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
         this.setOnDataFinishedLinstern(instance);
     }
 
+
+    /**
+     * 回调接口返回的网络请求后的数据
+     * @param s
+     */
     @Override
     public void dataFinishedLinstern(String s) {
         mCompanys = new ArrayList<>();
         if (s.startsWith("0")){
             //响应成功
-            loadingDialog.dismiss();
             String str = ChangeUtil.procRet(s);
             str = str.substring(1,str.length());
             List<Map<String ,Object>> data = GsonUtil.GsonToListMaps(str);
@@ -76,11 +94,25 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
             Company company = new Company();
             company.setCom(data.get(i).get("comname").toString());
             company.setComCode(data.get(i).get("comcode").toString());
+            company.setComs(data.get(i).get("bcname").toString());
+            company.setPer(data.get(i).get("comman").toString());
+            company.setNum(data.get(i).get("commanphone").toString());
+            company.setAddress(data.get(i).get("comaddress").toString());
             mCompanys.add(company);
             }
         }else{
             //响应失败
+            Toast.makeText(instance, "未查询到有效数据", Toast.LENGTH_SHORT).show();
         }
+        loadingDialog.dismiss();
+        addEvent();
+    }
+
+
+    /**
+     * 事件的处理
+     */
+    private void addEvent() {
         comAdapter = new ComAdapter(instance,mCompanys);
         mList.setAdapter(comAdapter);//设置适配器
         mTvCount.setText(""+mCompanys.size());
@@ -92,7 +124,7 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
                 startActivity(intent);
             }
         });
-
     }
+
 
 }

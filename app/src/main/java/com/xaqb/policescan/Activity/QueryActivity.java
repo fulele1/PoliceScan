@@ -1,27 +1,14 @@
 package com.xaqb.policescan.Activity;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xaqb.policescan.Manager.SystemBarTintManager;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
-import com.xaqb.policescan.Utils.LogUtils;
-import com.xaqb.policescan.zxing.activity.CaptureActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -147,11 +134,13 @@ public class QueryActivity extends BaseActivity {
                                 mTvPerson.setText(data.get("empname").toString());//从业人员名称
                             } else {
                                 mTvCode.setText(string + "查无此单");
+                                btQuery.setVisibility(View.GONE);
                             }
                         } else {
                             //failure
                             loadingDialog.dismiss();
                             mTvCode.setText(string + "(查无此单)");
+                            btQuery.setVisibility(View.GONE);
                         }
                     }
                 });

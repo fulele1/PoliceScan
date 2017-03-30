@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -240,7 +241,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
         SharedPreferences oConfig = getSharedPreferences("config", Activity.MODE_PRIVATE);
         return oConfig.getString(sName, "");
-
     }
 
     protected void readConfig(String[] aName, String[] aValue) {
@@ -476,6 +476,67 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
 
 
+    protected void writeConfig(String sName, String sValue) {
+        SharedPreferences oConfig = getSharedPreferences("config", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor oEdit = oConfig.edit();//获得编辑器
+        oEdit.putString(sName, sValue);
+        oEdit.commit();//提交内容
+    }
+
+
+
+    //对话框的调用
+    protected AlertDialog showDialog(String sCaption,
+                                     String sText,
+                                     String sOk,
+                                     String sCancel,
+                                     int iLayout) {
+        AlertDialog.Builder oBuilder = new AlertDialog.Builder(this);
+        if (iLayout > 0) {
+            LayoutInflater oInflater = getLayoutInflater();
+            View oLayout = oInflater.inflate(iLayout, null, false);
+            oBuilder.setView(oLayout);
+        } else
+            oBuilder.setMessage(sText);
+        oBuilder.setTitle(sCaption);
+        if (sOk.length() > 0) {
+            oBuilder.setPositiveButton(sOk, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    BaseActivity.this.dialogOk();
+                    dialog.dismiss();
+
+                }
+            });
+        }
+        if (sCancel.length() > 0) {
+            oBuilder.setNegativeButton(sCancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    BaseActivity.this.dialogCancel();
+                    dialog.dismiss();
+                }
+            });
+        }
+        AlertDialog oDialog = oBuilder.create();
+        oDialog.show();
+        return oDialog;
+    }
+
+
+    //对话框单击确定按钮处理
+    protected void dialogOk() {
+
+    }
+
+    //对话框单击取消按钮处理
+    protected void dialogCancel() {
+
+    }
+
+
+
+
 
     /**
      * ok进行网络请求
@@ -483,6 +544,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
      */
     public void getOkConnection(String url){
 
+        loadingDialog.show("请稍后...");
         OkHttpUtils
                 .get()
                 .url(url)

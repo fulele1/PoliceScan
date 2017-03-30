@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.entity.Coms;
 
 import java.util.List;
 
@@ -17,8 +18,8 @@ import java.util.List;
 
 public class ComsAdapter extends BaseAdapter {
     private Context context;
-    private List<String> coms;
-    public ComsAdapter(Context context, List<String> coms) {
+    private List<Coms> coms;
+    public ComsAdapter(Context context, List<Coms> coms) {
         this.context = context;
         this.coms = coms;
     }
@@ -44,15 +45,18 @@ public class ComsAdapter extends BaseAdapter {
             holders = new ViewHolders();
             view = LayoutInflater.from(context).inflate(R.layout.list_coms,null);
             holders.txt = (TextView) view.findViewById(R.id.textView_list_coms);
+            holders.txtcode = (TextView) view.findViewById(R.id.textView_list_comscode);
             view.setTag(holders);
         }else {
             holders = (ViewHolders) view.getTag();
         }
-        holders.txt.setText(coms.get(i));
+        holders.txt.setText(coms.get(i).getBcname());
+        holders.txtcode.setText(coms.get(i).getBccode());
         return view;
     }
 }
 
 class ViewHolders{
     TextView txt;
+    TextView txtcode;
 }

@@ -9,27 +9,71 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#5890ff"
-        android:orientation="horizontal"
+        android:layout_height="140dp"
+        android:background="@mipmap/ba"
+        android:orientation="vertical"
         >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/user"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="20dp"
-            />
 
-        <TextView
-            android:id="@+id/tv_user_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
-            />
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/abc_action_bar_content_inset_material"
+            android:layout_marginRight="@dimen/abc_action_bar_content_inset_material"
+            android:layout_marginLeft="@dimen/abc_action_bar_content_inset_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:textSize="@dimen/abc_text_size_medium_material"
+                android:text="寄递物流业警用查询系统"
+                android:layout_weight="1"
+                />
+
+
+            <ImageView
+                android:id="@+id/iv_chacha_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/chacha"
+
+                />
+
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/user"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_user_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -130,9 +174,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:background="@null"
-            android:drawableTop="@mipmap/search"
+            android:drawableTop="@mipmap/per"
             />
-
 
         <TextView
             android:id="@+id/txt_com_total"
@@ -156,10 +199,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textSize="@dimen/abc_text_size_caption_material"
         android:textColor="@color/ff7c7c7c"
         android:text="西安千百网络科技有限公司@2017版权所有"
         />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

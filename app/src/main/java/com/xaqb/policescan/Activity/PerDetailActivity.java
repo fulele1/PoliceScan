@@ -1,10 +1,8 @@
 package com.xaqb.policescan.Activity;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -14,22 +12,16 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.google.gson.Gson;
 import com.xaqb.policescan.R;
-import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
-import com.xaqb.policescan.Utils.LogUtils;
-import com.xaqb.policescan.entity.Person;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static java.lang.StrictMath.E;
 
 public class PerDetailActivity extends BaseActivity implements OnDataFinishedLinstern{
 
@@ -40,8 +32,6 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     private TextView mTvSix;
     private TextView mTvNational;
     private TextView mTvIde;
-    private TextView mTvHome;
-    private TextView mTvState;
     private TextView mTvGet;
     private TextView mTvPost;
     private List<Double> at;
@@ -65,8 +55,6 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvSix = (TextView) findViewById(R.id.txt_six_per_dt);
         mTvNational = (TextView) findViewById(R.id.txt_national_per_dt);
         mTvIde = (TextView) findViewById(R.id.txt_ide_per_dt);
-        mTvHome = (TextView) findViewById(R.id.txt_home_per_dt);
-        mTvState = (TextView) findViewById(R.id.txt_state_per_dt);
         mTvGet = (TextView) findViewById(R.id.txt_get_per_dt);
         mTvPost = (TextView) findViewById(R.id.txt_post_per_dt);
 
@@ -87,7 +75,6 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     public void dataFinishedLinstern(String s) {
         if (s.startsWith("0")){
             //响应成功
-            loadingDialog.dismiss();
 //            String str = ChangeUtil.procRet(s);
 //            str = str.substring(1,str.length());
             String str = s.split(String.valueOf((char) 1))[1];
@@ -98,13 +85,13 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
             mTvSix.setText(data.get("sexname").toString());
             mTvNational.setText(data.get("nationname").toString());
             mTvIde.setText(data.get("empcertcode").toString());
-            mTvHome.setText("");
-            mTvState.setText("");
             getData(data);
 
         }else{
             //响应失败
+            Toast.makeText(instance, "未查询到有效数据", Toast.LENGTH_SHORT).show();
         }
+        loadingDialog.dismiss();
     }
 
 
@@ -155,8 +142,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
         // 是否在折线图上添加边框
         mLineChart.setDrawBorders(false);
-
-        mLineChart.setDescription("收件数量");// 数据描述
+        mLineChart.setDescription("数量");// 数据描述
 
         // 如果没有数据的时候，会显示这个，类似listview的emtpyview
         mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
@@ -291,13 +277,11 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
 //				String s = "y:" + n;
 //				return s;
 //			}
-
-            //            @Override
+            @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
                 // TODO Auto-generated method stub
                 int n = (int) value;
-                // String s = "y:" + n;
-                String s = "";
+                 String s = "" + n;
                 return s;
             }
         });
@@ -358,11 +342,8 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
             //            @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
                 // TODO Auto-generated method stub
-
-
                 int n = (int) value;
-                // String s = "y:" + n;
-                String s = "";
+                 String s = "" + n;
                 return s;
             }
         });

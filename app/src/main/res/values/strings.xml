@@ -52,4 +52,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_find_key">FindKeyActivity</string>
+
+
+    <string name="hello">Hello World, MainActivity!</string>
 </resources>
