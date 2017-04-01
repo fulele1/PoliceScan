@@ -3,6 +3,7 @@ package com.xaqb.policescan.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class LoginActivity extends BaseActivity {
     private String username, psw, pswmd5;
     private EditText etUsername, etPsw;
     private CheckBox cbRememberPsw;
+    private Intent intent;
 
 
     @Override
@@ -48,6 +50,7 @@ public class LoginActivity extends BaseActivity {
         instance = this;
         assignViews();
     }
+
 
     private void assignViews() {
         btLogin = (Button) findViewById(R.id.bt_login);
@@ -112,12 +115,6 @@ public class LoginActivity extends BaseActivity {
 
                         @Override
                         public void onResponse(String s, int i) {
-
-                            SharedPreferences oData = getSharedPreferences("user", Activity.MODE_PRIVATE);
-                            SharedPreferences.Editor oEdit = oData.edit();//获得编辑器
-                            oEdit.putString("name", username);
-                            oEdit.commit();//提交内容
-
                             //0{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}000
                             if (s.startsWith("0")) {
                                 //suc
@@ -125,7 +122,14 @@ public class LoginActivity extends BaseActivity {
                                 str = str.substring(1, str.length());//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
                                 LogUtils.i(str);
                                 Map<String, Object> data = GsonUtil.JsonToMap(str);
-                                LogUtils.i(data.toString());LogUtils.i(data.get("policeid").toString());
+                                LogUtils.i(data.toString());
+                                LogUtils.i(data.get("policeid").toString());
+
+                                SharedPreferences oData = getSharedPreferences("user", Activity.MODE_PRIVATE);
+                                SharedPreferences.Editor oEdit = oData.edit();//获得编辑器
+                                oEdit.putString("name", data.get("policename").toString());
+                                oEdit.commit();//提交内容
+
                                 startActivity(new Intent(instance, TotalActivity.class));
                                 finish();
                             } else {

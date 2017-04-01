@@ -50,7 +50,6 @@ public class UpdateActivity extends BaseActivity {
         FoBar = (ProgressBar) findViewById(R.id.pbprogress);
         FoBar.setMax(100);
         FoText = (TextView) findViewById(R.id.tvmessage);
-//        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
         this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
 
         FoBtn = (Button) findViewById(R.id.buttonok);
@@ -95,12 +94,12 @@ public class UpdateActivity extends BaseActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onKeyDown(int iCode, KeyEvent oEvent) {
-//        if (iCode == KeyEvent.KEYCODE_BACK || iCode == KeyEvent.KEYCODE_HOME || iCode == KeyEvent.KEYCODE_MENU)
-//            return false;
-//        return super.onKeyDown(iCode, oEvent);
-//    }
+    @Override
+    public boolean onKeyDown(int iCode, KeyEvent oEvent) {
+        if (iCode == KeyEvent.KEYCODE_BACK || iCode == KeyEvent.KEYCODE_HOME || iCode == KeyEvent.KEYCODE_MENU)
+            return false;
+        return super.onKeyDown(iCode, oEvent);
+    }
 
     //0:下载成功  1：发生错误
     Handler FoHandler = new Handler() {
@@ -117,7 +116,7 @@ public class UpdateActivity extends BaseActivity {
                 case 1://错误信息
                     FiDialogType = 1;
                     sError = (String) msg.obj;
-                    showDialog("错误信息", sError, "确定", "", 0);
+                    showDialog("未发现", "", "确定", "", 0);
                     FbRun = false;
                     FoText.setText(sError);
                     break;

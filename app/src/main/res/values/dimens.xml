@@ -9,6 +9,7 @@
     <dimen name="textview_small_size">14sp</dimen>
     <dimen name="textview_smalls_size">10sp</dimen>
     <dimen name="margin_edge">40px</dimen>
+    <dimen name="margin_edges">10px</dimen>
     <dimen name="title_height">50dp</dimen>
     <dimen name="logo">200dp</dimen>
     <dimen name="padding">10dp</dimen>

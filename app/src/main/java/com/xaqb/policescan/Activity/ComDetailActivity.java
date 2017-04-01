@@ -167,7 +167,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
 
 
 // y轴数据集
-        LineDataSet mLineDataSet2 = new LineDataSet(y2, "企业一周投递数量折线图");
+        LineDataSet mLineDataSet2 = new LineDataSet(y2, "投递数量");
 
         // 用y轴的集合来设置参数
         // 线宽
@@ -229,7 +229,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         });
 
         // y轴数据集
-        LineDataSet mLineDataSet = new LineDataSet(y, "企业一周收递数量折线图");
+        LineDataSet mLineDataSet = new LineDataSet(y, "收寄数量");
 
         // 用y轴的集合来设置参数
         // 线宽

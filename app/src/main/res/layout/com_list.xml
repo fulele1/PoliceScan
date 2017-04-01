@@ -17,13 +17,25 @@
             android:id="@+id/tv_com_com_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:textStyle="bold"
             android:textSize="@dimen/abc_text_size_small_material"
             />
 
-        <TextView
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企 业  品 牌："/>
+
+        <TextView
             android:id="@+id/tv_coms_com_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +43,19 @@
             android:textStyle="bold"
             android:textSize="@dimen/abc_text_size_small_material"
             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联 系  电 话："/>
+
         <TextView
             android:id="@+id/tv_num_com_list"
             android:layout_width="match_parent"
@@ -39,10 +64,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/abc_text_size_small_material"
             />
-
     </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"

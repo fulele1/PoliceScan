@@ -22,6 +22,8 @@ import com.xaqb.policescan.Other.CheckNetwork;
 import com.xaqb.policescan.Other.MyApplication;
 import com.xaqb.policescan.Other.SendService;
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.Utils.ProcUnit;
 import com.xaqb.policescan.zxing.activity.CaptureActivity;
 
@@ -43,8 +45,7 @@ public class TotalActivity extends BaseActivity {
     protected boolean FbUpdate = false;
     protected boolean FbForceUpdate = false;
     static boolean FbForceRight = false;
-
-    private  TotalActivity instance;
+    private TotalActivity instance;
     private TextView mTxtPer;
     private TextView mTxtCome;
     private TextView mTxtModify;
@@ -84,21 +85,19 @@ public class TotalActivity extends BaseActivity {
     @Override
     public void initData() {
 
-        startUpload();
-
+        //startUpload();
         FsUrl=readConfig("url");
         if(FsUrl.length()==0)
         {
-        FsUrl="http://xawz.xaqianbai.net:8090/jyversion.txt";
+        FsUrl= HttpUrlUtils.getHttpUrl().get_updata()+"/jyversion.txt";
 			 writeConfig("url",FsUrl);
         }
         FsUrl = readConfig("url");
         FsUser = readConfig("user");
         FsFile = "/sdcard/update/police.apk";
         FbUpdate = false;
-//        getVersion();
-//        checkRight();
-
+        getVersion();
+        checkRight();
     }
 
     /**
@@ -206,7 +205,7 @@ public class TotalActivity extends BaseActivity {
 
                 getVersion();
                 FbUpdate = true;
-                downVersion();
+                //downVersion();
 
                 break;
             case R.id.iv_chacha_total://x号
@@ -259,14 +258,16 @@ public class TotalActivity extends BaseActivity {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    String sRet = ProcUnit.httpGetMore(FsUrl + "/jyversion.txt");
+                    LogUtils.i("fsurl==",FsUrl );
+
+                    String sRet = ProcUnit.httpGetMore(FsUrl );
                     if (sRet.substring(0, 1).equals("0")) {
                         FsRet = sRet.substring(1);
                         FoHandler.sendMessage(M(0));
                     } else {
                         //FsRet=sRet.substring(1);
-                        //FsRet = "获取版本信息错误，请与管理员联系！";
-                        //FoHandler.sendMessage(M(10));
+                        FsRet = "获取版本信息错误，请与管理员联系！";
+                        FoHandler.sendMessage(M(10));
                     }
                 } catch (Exception E) {
                     FsRet = E.getMessage();
@@ -283,6 +284,24 @@ public class TotalActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void dialogOk() {
+//        super.dialogOk();
+//
+//        downVersion();
+
+        switch (FiDialogType) {
+            case 0:
+                Intent oInt = new Intent(this, SendService.class);
+                stopService(oInt);
+                this.finish();
+                break;
+            case 1:
+                downVersion();
+                break;
+        }
+
+    }
 
     Handler FoHandler = new Handler() {
         @Override
@@ -290,11 +309,13 @@ public class TotalActivity extends BaseActivity {
             switch (msg.what) {
                 case 0: //获取版本号
                     if (FsRet.length() == 0) {
+                        FiDialogType = 10;
                         showDialog("错误", "获取版本错误", "确定", "", 0);
                         return;
                     }
                     String sVersion = getVersionName();
                     if (sVersion.length() == 0) {
+                        FiDialogType = 10;
                         showDialog("错误", "获取版本号错误", "关闭", "", 0);
                         return;
                     }
@@ -302,6 +323,7 @@ public class TotalActivity extends BaseActivity {
                     if (aData.length > 0) {
                         aData[0] = aData[0].trim();
                         if (sVersion.compareTo(aData[0]) < 0) {
+                            FiDialogType = 1;
                             FsVersion = aData[0];
                             if (aData.length > 1) {
                                 aData[1] = aData[1].trim();
@@ -309,6 +331,7 @@ public class TotalActivity extends BaseActivity {
                             }
                             showDialog("更新提示", "检测到新版本，是否更新", "立刻更新", "以后再说", 0);
                         } else {
+                            FiDialogType = 10;
                             if (FbUpdate)
                                 showDialog("提示", "已经是最新版本", "确定", "", 0);
                         }
@@ -318,6 +341,7 @@ public class TotalActivity extends BaseActivity {
                     if (FoWait != null) FoWait.dismiss();
                     File oFile = new File(FsFile);
                     if (!oFile.exists()) {
+                        FiDialogType = 10;
                         showDialog("错误", "下载文件不存在", "关闭", "", 0);
                         return;
                     }
@@ -333,6 +357,7 @@ public class TotalActivity extends BaseActivity {
 
                 case 10:
                     if (FoWait != null) FoWait.dismiss();
+                    FiDialogType = 10;
                     //showDialog("错误",FsRet,"确定","",0);
                     showMess(FsRet, true);
                     break;
@@ -357,8 +382,7 @@ public class TotalActivity extends BaseActivity {
     protected void downVersion() {
         Intent oInt = new Intent();
         oInt.setClass(this, UpdateActivity.class);
-        //oInt.putExtra("url", FsUrl + "/police.apk");
-        oInt.putExtra("url", "http://xawz.xaqianbai.net:8090" + "/police.apk");
+        oInt.putExtra("url", HttpUrlUtils.getHttpUrl().get_updata()+"/police.apk");
         oInt.putExtra("file", "police.apk");
         startActivity(oInt);
     }

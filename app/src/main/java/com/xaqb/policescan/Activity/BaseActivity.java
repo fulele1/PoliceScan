@@ -59,6 +59,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     private LinearLayout llRoot;
     private FrameLayout layout_titlebar;
     private Toast toast;
+    protected int FiDialogType = 0;//对话框处理类型
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -526,7 +527,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
     //对话框单击确定按钮处理
     protected void dialogOk() {
-
     }
 
     //对话框单击取消按钮处理

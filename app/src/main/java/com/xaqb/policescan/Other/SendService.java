@@ -51,7 +51,6 @@ public class SendService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        //Log.w("error",(FoThread==null)?"null":"no");
 
         if (FoThread == null) FoThread = new SendFileThread();
         String[] aName = {"user", "url", "right", "urltime"};
@@ -65,11 +64,6 @@ public class SendService extends Service {
         FoServer.load(aValue[1]);
         FoServer.setTime(aValue[3]);
         if (FoServer.size() > 1) FoThread.FoServer = FoServer;
-        //Log.w("error",FsUser+" "+FsUrl+" "+FsRight+" "+FsPath);
-        //Log.w("error",FoThread.FsPath);
-        //Log.w("error",FoThread.FsUrl);
-        //Log.w("error",FoThread.FsUser);
-        // Log.w("error",FoThread.FsRight);
         FoThread.open();
         return super.onStartCommand(intent, flags, startId);
 

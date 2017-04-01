@@ -67,7 +67,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="从业人员数："
+                    android:text="从业人数："
                     android:textSize="@dimen/textview_normals_size"/>
                 <TextView
                     android:id="@+id/txt_per_com_dt"

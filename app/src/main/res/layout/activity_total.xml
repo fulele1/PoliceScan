@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,22 +44,18 @@
                 />
 
         </LinearLayout>
-
-
-
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/user"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="20dp"
+
                 />
 
             <TextView
@@ -68,143 +63,156 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
                 />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_edge"
-        android:padding="@dimen/abc_action_bar_content_inset_material"
-        android:background="@null"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
 
-        <EditText
-            android:id="@+id/et_order_total"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:background="@mipmap/edit"
-            android:drawablePadding="10px"
-            android:hint="@string/input_order_id"
-            android:paddingLeft="10px"
-            android:singleLine="true"
-            android:drawableLeft="@mipmap/se"
-            android:textColor="#000000"
-            android:textSize="@dimen/textview_small_size"
-            />
 
-        <ImageView
-            android:id="@+id/iv_zxing"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/margin_edge"
-            android:src="@mipmap/zxing"
-            android:layout_gravity="center"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_edge"
+            android:padding="@dimen/abc_action_bar_content_inset_material"
+            android:background="@null"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+
+            <EditText
+                android:id="@+id/et_order_total"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@mipmap/edit"
+                android:drawablePadding="10px"
+                android:hint="@string/input_order_id"
+                android:paddingLeft="10px"
+                android:singleLine="true"
+                android:drawableLeft="@mipmap/se"
+                android:textColor="#000000"
+                android:textSize="@dimen/textview_small_size"
+                />
+
+            <ImageView
+                android:id="@+id/iv_zxing"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/zxing"
+                android:layout_gravity="center" />
             />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:padding="@dimen/abc_action_bar_content_inset_material"
-        >
-
-        <TextView
-            android:id="@+id/txt_modify_total"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="修改密码"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@null"
-            android:drawableTop="@mipmap/modify"
-            />
+            android:layout_weight="0.5"
+            android:padding="@dimen/abc_action_bar_content_inset_material"
+            >
 
-        <TextView
-            android:id="@+id/txt_update_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="检查更新"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@null"
-            android:drawableTop="@mipmap/update"
-            />
+            <TextView
+                android:id="@+id/txt_modify_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="修改密码"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@null"
+                android:drawableTop="@mipmap/modify"
+                />
 
-        <TextView
-            android:id="@+id/txt_finish_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退出"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:drawableTop="@mipmap/finish"
-            android:background="@null"
-            />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txt_update_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="检查更新"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@null"
+                android:drawableTop="@mipmap/update"
+                />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="@dimen/abc_action_bar_content_inset_material"
-        >
+            <TextView
+                android:id="@+id/txt_finish_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="退出"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:drawableTop="@mipmap/finish"
+                android:background="@null"
+                />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/txt_per_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@null"
-            android:drawableTop="@mipmap/per"
-            />
-
-        <TextView
-            android:id="@+id/txt_com_total"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:padding="@dimen/abc_action_bar_content_inset_material"
+            >
+
+            <TextView
+                android:id="@+id/txt_per_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@null"
+                android:drawableTop="@mipmap/per"
+                />
+
+            <TextView
+                android:id="@+id/txt_com_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@null"
+                android:drawableTop="@mipmap/com"
+                />
+        </LinearLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5" />
+
+        <TextView
+            android:text="西安市公安局"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ff7c7c7c"
+            android:id="@+id/textView"
+            android:textSize="@dimen/abc_text_size_caption_material"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@null"
-            android:drawableTop="@mipmap/com"
             />
-    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.9" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="@dimen/abc_text_size_caption_material"
-        android:textColor="@color/ff7c7c7c"
-        android:text="西安千百网络科技有限公司@2017版权所有"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/abc_text_size_caption_material"
+            android:textColor="@color/ff7c7c7c"
+            android:layout_marginTop="5dp"
+            android:text="西安千百网络科技有限公司@2017版权所有"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
 </LinearLayout>

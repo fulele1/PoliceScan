@@ -1,6 +1,7 @@
 package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,9 +80,12 @@ public class FindKeyActivity extends BaseActivity {
 //        } else if (vCode == null || vCode.equals("")) {
 //            showToast("请输入验证码");
 //        }
-        if (psw.equals(ChangeUtil.md5(""))) {
-            showToast("请输入密码");
-        } else if (confirmPsw.equals(ChangeUtil.md5(""))) {
+        if(old.equals("")){
+            showToast("请输入旧密码");
+        }
+        else if (psw.equals("")) {
+            showToast("请输入新密码");
+        } else if (confirmPsw.equals("")) {
             showToast("请输入确认密码");
         } else if (!psw.equals(confirmPsw)) {
             showToast("两次输入的密码不一致");
@@ -121,8 +125,10 @@ public class FindKeyActivity extends BaseActivity {
 //                                Map<String,Object> data =  GsonUtil.JsonToMap(str);
 
                                 showToast("找回密码成功");
-                                startActivity(new Intent(instance,LoginActivity.class));
-                                finish();
+
+                                Intent intent = new Intent(instance,LoginActivity.class);
+                                startActivity(intent);
+                                instance. finish();
 
                             }
                             if (s.startsWith("100")) {
