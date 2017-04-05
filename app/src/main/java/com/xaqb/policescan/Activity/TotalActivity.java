@@ -173,7 +173,6 @@ public class TotalActivity extends BaseActivity {
     }
 
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

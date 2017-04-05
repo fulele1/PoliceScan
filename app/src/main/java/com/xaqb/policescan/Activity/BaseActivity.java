@@ -1,15 +1,13 @@
 package com.xaqb.policescan.Activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -29,16 +27,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.bugly.crashreport.CrashReport;
-import com.xaqb.policescan.Manager.SystemBarTintManager;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.AppManager;
-import com.xaqb.policescan.Utils.ChangeUtil;
-import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Views.LoadingDialog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.util.Map;
 
 import okhttp3.Call;
 
@@ -566,6 +560,22 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     public void setOnDataFinishedLinstern(OnDataFinishedLinstern dataFinishedLinstern){
         mDataFinishedLinstern = dataFinishedLinstern;
     }
+
+
+    public String getVersionName() {
+        try {
+            PackageInfo info = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+
+            // 当前应用的版本名称
+            return info.versionName;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            return "";
+        }
+    }
+
+
 }
 
 interface OnDataFinishedLinstern{

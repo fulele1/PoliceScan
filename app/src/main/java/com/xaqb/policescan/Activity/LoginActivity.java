@@ -34,6 +34,7 @@ public class LoginActivity extends BaseActivity {
     private EditText etUsername, etPsw;
     private CheckBox cbRememberPsw;
     private Intent intent;
+    private TextView mTxtVersion;
 
 
     @Override
@@ -57,6 +58,8 @@ public class LoginActivity extends BaseActivity {
         etUsername = (EditText) findViewById(R.id.et_username);
         etPsw = (EditText) findViewById(R.id.et_password);
         cbRememberPsw = (CheckBox) findViewById(R.id.cb_remember_psw);
+        mTxtVersion = (TextView) findViewById(R.id.txt_version_login);
+        mTxtVersion.setText("V"+getVersionName());
     }
 
     @Override

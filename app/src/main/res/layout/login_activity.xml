@@ -142,6 +142,17 @@
 
 
     <TextView
+        android:id="@+id/txt_version_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="版本号："
+        android:textSize="@dimen/abc_text_size_caption_material" />
+
+
+    <TextView
         android:text="西安市公安局"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,6 +161,8 @@
         android:textSize="@dimen/abc_text_size_caption_material"
         android:layout_gravity="center"
         />
+
+
 
     <TextView
         android:layout_width="wrap_content"
