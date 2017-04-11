@@ -72,7 +72,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 //        }
 
 
-        AppManager.getAppManager().addActivity(this);
+        AppManager.getAppManager().addActivity(this);//添加Activity到堆栈中
         // setImmersionStatus();
         try {
             setupViews();
@@ -141,7 +141,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         iv_backward = (ImageView) findViewById(R.id.iv_backward);
         tv_forward = (TextView) findViewById(R.id.tv_forward);
         mContentLayout = (FrameLayout) findViewById(R.id.layout_content);
-
     }
 
     /**
@@ -363,7 +362,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
      */
     public void showToast(CharSequence charSequence) {
         if (null == toast) {
-            toast = Toast.makeText(context, charSequence, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(context, charSequence, Toast.LENGTH_LONG);
         } else {
             toast.setText(charSequence);
         }

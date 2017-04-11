@@ -84,7 +84,7 @@
         <activity android:name=".Activity.PerDetailActivity" />
         <activity android:name=".Activity.ComDetailActivity" />
         <activity android:name=".Activity.SearchComsActivity" />
-        <activity android:name=".Activity.UpdateActivity"></activity>
+        <activity android:name=".Activity.UpdateActivity"/>
     </application>
 
 </manifest>

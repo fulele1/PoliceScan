@@ -2,6 +2,7 @@ package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,10 +126,10 @@ public class FindKeyActivity extends BaseActivity {
 //                                Map<String,Object> data =  GsonUtil.JsonToMap(str);
 
                                 showToast("找回密码成功");
+                                        instance.startActivity(new Intent(instance,LoginActivity.class));
+                                        instance.finish();
 
-                                Intent intent = new Intent(instance,LoginActivity.class);
-                                startActivity(intent);
-                                instance. finish();
+
 
                             }
                             if (s.startsWith("100")) {

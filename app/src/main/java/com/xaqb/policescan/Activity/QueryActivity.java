@@ -129,9 +129,11 @@ public class QueryActivity extends BaseActivity {
                                 mTvTime.setText(data.get("mantime").toString());//时间
                                 mTvAddress.setText(data.get("address").toString());//收寄地址
                                 mTvPhone.setText(data.get("manphone").toString());//联系电话
-                                mTvDestPhone.setText(data.get("destphone").toString());//收件人电话（只在收寄时有该字段）
                                 mTvCompany.setText(data.get("comname").toString());//公司名称
                                 mTvPerson.setText(data.get("empname").toString());//从业人员名称
+                                if (data.get("expresstype").toString().equals("收寄")){
+                                    mTvDestPhone.setText(data.get("destphone").toString());//收件人电话（只在收寄时有该字段）
+                                }
                             } else {
                                 mTvCode.setText(string + "查无此单");
                                 btQuery.setVisibility(View.GONE);
