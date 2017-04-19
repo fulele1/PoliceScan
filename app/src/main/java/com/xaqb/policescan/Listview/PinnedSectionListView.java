@@ -498,7 +498,4 @@ public class PinnedSectionListView extends ListView {
         }
         return ((PinnedSectionListAdapter) adapter).isItemViewTypePinned(viewType);
     }
-
-
-
 }

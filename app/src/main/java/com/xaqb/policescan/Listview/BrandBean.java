@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 
-public class PhoneBean {
+public class BrandBean {
     /**
      * 城市名字首字母
      */

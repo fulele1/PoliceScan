@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,8 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xaqb.policescan.Listview.LetterIndexView;
-import com.xaqb.policescan.Listview.PhoneAdapter;
-import com.xaqb.policescan.Listview.PhoneBean;
+import com.xaqb.policescan.Listview.BrandAdapter;
+import com.xaqb.policescan.Listview.BrandBean;
 import com.xaqb.policescan.Listview.PinnedSectionListView;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.db.SQLdm;
@@ -43,15 +41,15 @@ public class SearchComsActivity extends BaseActivity {
     /**
      * 所有名字集合
      */
-    private ArrayList<PhoneBean> list_all;
+    private ArrayList<BrandBean> list_all;
     /**
      * 显示名字集合
      */
-    private ArrayList<PhoneBean> list_show;
+    private ArrayList<BrandBean> list_show;
     /**
      * 列表适配器
      */
-    private PhoneAdapter adapter;
+    private BrandAdapter adapter;
     /**
      * 保存名字首字母
      */
@@ -92,7 +90,7 @@ public class SearchComsActivity extends BaseActivity {
         list_all = new ArrayList<>();
         list_show = new ArrayList<>();
         map_IsHead = new HashMap<>();
-        adapter = new PhoneAdapter(this, list_show, map_IsHead);
+        adapter = new BrandAdapter(this, list_show, map_IsHead);
         listView.setAdapter(adapter);
 
         // 开启异步加载数据
@@ -109,7 +107,7 @@ public class SearchComsActivity extends BaseActivity {
         SQLiteDatabase db =s.openDatabase(getApplicationContext());
         Cursor cursor = db.query("BRAND",null,null,null,null,null,null);
         while (cursor.moveToNext()){
-            PhoneBean cityBean = new PhoneBean();
+            BrandBean cityBean = new BrandBean();
             cityBean.setName(cursor.getString(cursor.getColumnIndex("BCNAME")));
             cityBean.setCity_id(cursor.getString(cursor.getColumnIndex("BCCODE")));
             list_all.add(cityBean);
@@ -122,9 +120,9 @@ public class SearchComsActivity extends BaseActivity {
 
         // 初始化数据，顺便放入把标题放入map集合
         for (int i = 0; i < list_all.size(); i++) {
-            PhoneBean cityBean = list_all.get(i);
+            BrandBean cityBean = list_all.get(i);
             if (!map_IsHead.containsKey(cityBean.getHeadChar())) {// 如果不包含就添加一个标题
-                PhoneBean cityBean1 = new PhoneBean();
+                BrandBean cityBean1 = new BrandBean();
                 // 设置名字
                 cityBean1.setName(cityBean.getName());
                 // 设置标题type
@@ -163,10 +161,10 @@ public class SearchComsActivity extends BaseActivity {
 
                 if (TextUtils.isEmpty(search)) {
                     for (int i = 0; i < list_all.size(); i++) {
-                        PhoneBean bean = list_all.get(i);
+                        BrandBean bean = list_all.get(i);
                         //中文字符匹配首字母和英文字符匹配首字母
                         if (!map_IsHead.containsKey(bean.getHeadChar())) {// 如果不包含就添加一个标题
-                            PhoneBean bean1 = new PhoneBean();
+                            BrandBean bean1 = new BrandBean();
                             // 设置名字
                             bean1.setName(bean.getName());
                             // 设置标题type
@@ -182,11 +180,11 @@ public class SearchComsActivity extends BaseActivity {
                     }
                 } else {
                     for (int i = 0; i < list_all.size(); i++) {
-                        PhoneBean bean = list_all.get(i);
+                        BrandBean bean = list_all.get(i);
                         //中文字符匹配首字母和英文字符匹配首字母
                         if (bean.getName().indexOf(search) != -1 || bean.getName_en().indexOf(search) != -1) {
                             if (!map_IsHead.containsKey(bean.getHeadChar())) {// 如果不包含就添加一个标题
-                                PhoneBean bean1 = new PhoneBean();
+                                BrandBean bean1 = new BrandBean();
                                 // 设置名字
                                 bean1.setName(bean.getName());
                                 // 设置标题type
@@ -248,12 +246,12 @@ public class SearchComsActivity extends BaseActivity {
         });
     }
 
-    public class MemberSortUtil implements Comparator<PhoneBean> {
+    public class MemberSortUtil implements Comparator<BrandBean> {
         /**
          * 按拼音排序
          */
         @Override
-        public int compare(PhoneBean lhs, PhoneBean rhs) {
+        public int compare(BrandBean lhs, BrandBean rhs) {
             Comparator<Object> cmp = Collator
                     .getInstance(java.util.Locale.CHINA);
             return cmp.compare(lhs.getName_en(), rhs.getName_en());

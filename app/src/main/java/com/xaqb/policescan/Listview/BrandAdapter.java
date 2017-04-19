@@ -14,18 +14,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class PhoneAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
+public class BrandAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
     private LayoutInflater layoutInflater;
     /**
      * 数据集
      */
-    private ArrayList<PhoneBean> list;
+    private ArrayList<BrandBean> list;
     /**
      * 首字母
      */
     public HashMap<String, Integer> map_IsHead;
 
-    public PhoneAdapter(Context context, ArrayList<PhoneBean> list, HashMap<String, Integer> map_IsHead) {
+    public BrandAdapter(Context context, ArrayList<BrandBean> list, HashMap<String, Integer> map_IsHead) {
         this.list = list;
         this.map_IsHead = map_IsHead;
         layoutInflater = LayoutInflater.from(context);
