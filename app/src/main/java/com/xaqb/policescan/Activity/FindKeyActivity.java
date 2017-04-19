@@ -17,7 +17,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import okhttp3.Call;
 
 /**
-* @author le_f on 2016/11/22.
+* @author fl on 2016/11/22.
 * */
 public class FindKeyActivity extends BaseActivity {
 
@@ -51,8 +51,6 @@ public class FindKeyActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-
     }
 
     @Override
@@ -124,13 +122,9 @@ public class FindKeyActivity extends BaseActivity {
 //                                str = str.substring(1,str.length());
 //                                LogUtils.i(str);
 //                                Map<String,Object> data =  GsonUtil.JsonToMap(str);
-
                                 showToast("找回密码成功");
                                         instance.startActivity(new Intent(instance,LoginActivity.class));
                                         instance.finish();
-
-
-
                             }
                             if (s.startsWith("100")) {
                                 showToast("登陆超时，请重新登陆");
@@ -139,12 +133,9 @@ public class FindKeyActivity extends BaseActivity {
                                 //failure
                                 showToast("原始密码错误，请从新输入");
                             }
-
                             loadingDialog.dismiss();
                         }
                     });
         }
     }
-
-
 }

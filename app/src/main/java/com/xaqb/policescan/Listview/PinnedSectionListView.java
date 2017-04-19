@@ -396,7 +396,6 @@ public class PinnedSectionListView extends ListView {
 		}
 	}
 
-	//-- touch handling methods
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -499,5 +498,7 @@ public class PinnedSectionListView extends ListView {
         }
         return ((PinnedSectionListAdapter) adapter).isItemViewTypePinned(viewType);
     }
+
+
 
 }

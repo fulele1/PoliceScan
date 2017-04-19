@@ -6,9 +6,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-
-
-
         <TextView
             android:id="@+id/tvmessage"
             android:layout_width="wrap_content"
@@ -29,17 +26,16 @@
 
         <Button
             android:id="@+id/buttonok"
-            android:layout_width="180dp"
-            android:layout_height="30dp"
-            android:text="取    消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:padding="@dimen/abc_action_bar_default_padding_material"
             android:textColor="#FFFFFF"
             android:background="#60b304"
+            android:textSize="@dimen/abc_text_size_medium_material"
             android:layout_gravity="center"
             android:layout_margin="20px"
             />
-
-
-
     </LinearLayout>
 
 

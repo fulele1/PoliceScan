@@ -569,12 +569,9 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
             return info.versionName;
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             return "";
         }
     }
-
-
 }
 
 interface OnDataFinishedLinstern{

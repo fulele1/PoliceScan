@@ -51,7 +51,6 @@ public class UpdateActivity extends BaseActivity {
         FoBar.setMax(100);
         FoText = (TextView) findViewById(R.id.tvmessage);
         this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-
         FoBtn = (Button) findViewById(R.id.buttonok);
         if (FoBtn != null)
             FoBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,10 +82,6 @@ public class UpdateActivity extends BaseActivity {
     public void addListener() {
 
     }
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

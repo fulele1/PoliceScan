@@ -27,7 +27,6 @@ import java.util.Map;
  * Created by lenovo on 2017/3/6.
  */
 public class LoginActivity extends BaseActivity {
-    //private TextView tvFindKey;
     private LoginActivity instance;
     private Button btLogin;
     private String username, psw, pswmd5;
