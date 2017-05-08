@@ -62,9 +62,9 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
     public String getData(){
         Intent intent = instance.getIntent();
         String comscode = intent.getStringExtra("comscode");
-        LogUtils.i("======"+comscode);
         String com = intent.getStringExtra("com");
-        return "&combrand="+comscode+"&comname="+com;
+        String org = intent.getStringExtra("org");
+        return "&combrand="+comscode+"&comname="+com+"&comorg="+org;
     }
 
 

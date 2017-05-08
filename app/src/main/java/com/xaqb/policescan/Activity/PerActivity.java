@@ -64,11 +64,13 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
         String per = intent.getStringExtra("per");
         String phone = intent.getStringExtra("phone");
         String ide = intent.getStringExtra("ide");
+        String org = intent.getStringExtra("org");
 
         return "&comname="+com+
                 "&name="+per+
                 "&mp="+phone+
-                "&cert="+ide;
+                "&cert="+ide+
+                "&comorg="+org;
     }
 
     @Override

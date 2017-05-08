@@ -34,6 +34,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 
+import java.util.List;
+
 import okhttp3.Call;
 
 /**
@@ -527,10 +529,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
     }
 
-
-
-
-
     /**
      * ok进行网络请求
      * @param url
@@ -539,10 +537,10 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
         loadingDialog.show("请稍后...");
         OkHttpUtils
-                .get()
-                .url(url)
-                .build()
-                .execute(new StringCallback() {
+        .get()
+        .url(url)
+        .build()
+        .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int i) {
                         loadingDialog.dismiss();
@@ -553,13 +551,11 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                         mDataFinishedLinstern.dataFinishedLinstern(s);
                     }
                 });
-
     }
     OnDataFinishedLinstern mDataFinishedLinstern;
     public void setOnDataFinishedLinstern(OnDataFinishedLinstern dataFinishedLinstern){
         mDataFinishedLinstern = dataFinishedLinstern;
     }
-
 
     public String getVersionName() {
         try {

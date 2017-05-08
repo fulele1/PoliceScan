@@ -19,40 +19,23 @@ import com.xaqb.policescan.Listview.BrandBean;
 import com.xaqb.policescan.Listview.PinnedSectionListView;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.db.SQLdm;
-import com.xaqb.policescan.entity.Coms;
 
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 
 public class SearchComsActivity extends BaseActivity {
 
-
-    private List<Coms> mComsList;
-    private ListView mList;
     private SearchComsActivity instance;
-    EditText edit_search;
-    PinnedSectionListView listView;
-    LetterIndexView letterIndexView;
-    TextView txt_center;
-    /**
-     * 所有名字集合
-     */
+    private EditText edit_search;
+    private PinnedSectionListView listView;
+    private LetterIndexView letterIndexView;
+    private TextView txt_center;
     private ArrayList<BrandBean> list_all;
-    /**
-     * 显示名字集合
-     */
     private ArrayList<BrandBean> list_show;
-    /**
-     * 列表适配器
-     */
     private BrandAdapter adapter;
-    /**
-     * 保存名字首字母
-     */
     public HashMap<String, Integer> map_IsHead;
 
     /**
@@ -64,8 +47,6 @@ public class SearchComsActivity extends BaseActivity {
      */
     public static final int TITLE = 1;
 
-
-
     @Override
     public void initTitleBar() {
         setTitle("品牌列表");
@@ -76,17 +57,14 @@ public class SearchComsActivity extends BaseActivity {
     public void initViews() {
         setContentView(R.layout.activity_search_coms);
         instance = this;
-        mList = (ListView) findViewById(R.id.list_search);
         edit_search = (EditText) findViewById(R.id.edit_search);
         listView = (PinnedSectionListView) findViewById(R.id.phone_listview);
         letterIndexView = (LetterIndexView) findViewById(R.id.phone_LetterIndexView);
         txt_center = (TextView) findViewById(R.id.phone_txt_center);
-
     }
 
     @Override
     public void initData() {
-
         list_all = new ArrayList<>();
         list_show = new ArrayList<>();
         map_IsHead = new HashMap<>();
@@ -149,11 +127,19 @@ public class SearchComsActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+
+                //显示和隐藏字母条
+                if (!editable.toString().equals("")){
+                    letterIndexView.setVisibility(View.GONE);
+                }else if (editable.toString().equals("")){
+                    letterIndexView.setVisibility(View.VISIBLE);
+                }
+
+                //重新获取需要现实的数据
                 list_show.clear();
                 map_IsHead.clear();
                 //把输入的字符改成大写
@@ -229,6 +215,7 @@ public class SearchComsActivity extends BaseActivity {
         });
 
 
+
         /**子条目的点击事件 */
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -246,6 +233,7 @@ public class SearchComsActivity extends BaseActivity {
         });
     }
 
+
     public class MemberSortUtil implements Comparator<BrandBean> {
         /**
          * 按拼音排序
@@ -257,6 +245,4 @@ public class SearchComsActivity extends BaseActivity {
             return cmp.compare(lhs.getName_en(), rhs.getName_en());
         }
     }
-
-
 }

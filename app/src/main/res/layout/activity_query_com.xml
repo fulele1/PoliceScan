@@ -62,7 +62,6 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:padding="@dimen/abc_action_bar_content_inset_material">
-
         android:orientation="horizontal">
 
         <TextView
@@ -87,6 +86,55 @@
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="@dimen/textview_small_size" />
+
+
+    </LinearLayout>
+    <LinearLayout style="@style/common_horizontal_division_line_style" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="@dimen/abc_action_bar_content_inset_material">
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_edge"
+            android:gravity="center"
+            android:text="管辖机构："
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_normal_size" />
+
+        <EditText
+                android:id="@+id/et_org_com"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="10px"
+            android:hint="请选择管辖机构"
+            android:paddingLeft="10px"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_small_size" />
+
+       <ImageView
+           android:id="@+id/iv_clear_org_com"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@mipmap/clean"
+           android:layout_gravity="center"
+           android:visibility="gone"
+           />
+
+        <ImageView
+            android:id="@+id/iv_org_com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/click"/>
 
 
     </LinearLayout>

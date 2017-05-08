@@ -127,8 +127,8 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
             dvCount +=dv.get(i);
         }
 
-        mTvGet.setText(dvCount+"");
-        mTvPost.setText(atCount+"");
+        mTvGet.setText(atCount+"");
+        mTvPost.setText(dvCount+"");
 
         // 获取完数据之后 制作7个数据点（沿x坐标轴）
         LineData mLineData = makeLineData(7);
@@ -167,7 +167,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
 
 
 // y轴数据集
-        LineDataSet mLineDataSet2 = new LineDataSet(y2, "投递数量");
+        LineDataSet mLineDataSet2 = new LineDataSet(y2, "收寄数量");
 
         // 用y轴的集合来设置参数
         // 线宽
@@ -229,7 +229,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         });
 
         // y轴数据集
-        LineDataSet mLineDataSet = new LineDataSet(y, "收寄数量");
+        LineDataSet mLineDataSet = new LineDataSet(y, "投递数量");
 
         // 用y轴的集合来设置参数
         // 线宽
@@ -291,8 +291,8 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         });
 
         ArrayList<LineDataSet> mLineDataSets = new ArrayList<>();
-        mLineDataSets.add(mLineDataSet);
         mLineDataSets.add(mLineDataSet2);
+        mLineDataSets.add(mLineDataSet);
         LineData mLineData = new LineData(x, mLineDataSets);
         return mLineData;
     }

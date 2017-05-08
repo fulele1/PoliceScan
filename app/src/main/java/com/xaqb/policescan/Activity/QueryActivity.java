@@ -84,7 +84,12 @@ public class QueryActivity extends BaseActivity {
             case R.id.bt_query_query:
                 if (mTvCode.getText()!=null){
                     Intent intent = new Intent(instance, QueryWebviewActivity.class);
-                    intent.putExtra("url", "https://m.kuaidi100.com/index_all.html?postid=" + mTvCode.getText());
+                    String s = mTvCode.getText().toString();
+                    if (s.contains("(")){
+                        intent.putExtra("url", "https://m.kuaidi100.com/index_all.html?postid=" + s.substring(0,s.indexOf("(")));
+                    }else{
+                        intent.putExtra("url", "https://m.kuaidi100.com/index_all.html?postid=" + s);
+                    }
                     startActivity(intent);
                 }
                 break;
@@ -136,13 +141,13 @@ public class QueryActivity extends BaseActivity {
                                 }
                             } else {
                                 mTvCode.setText(string + "查无此单");
-                                btQuery.setVisibility(View.GONE);
+                                //btQuery.setVisibility(View.GONE);
                             }
                         } else {
                             //failure
                             loadingDialog.dismiss();
                             mTvCode.setText(string + "(查无此单)");
-                            btQuery.setVisibility(View.GONE);
+                            //btQuery.setVisibility(View.GONE);
                         }
                     }
                 });

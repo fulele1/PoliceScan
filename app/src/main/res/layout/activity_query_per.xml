@@ -141,6 +141,55 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/abc_action_bar_content_inset_material">
+
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_edge"
+            android:gravity="center"
+            android:text="管辖机构："
+            android:textColor="#000000"
+            android:textSize="@dimen/textview_normal_size" />
+
+        <EditText
+            android:id="@+id/et_org_per"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingLeft="10px"
+            android:hint="请选择快递员管辖机构"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:focusable="false"
+            android:textSize="@dimen/textview_small_size" />
+
+        <ImageView
+            android:id="@+id/iv_clean_per"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/clean"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/iv_coms_per"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/click"/>
+
+    </LinearLayout>
+    <LinearLayout style="@style/common_horizontal_division_line_style" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
         android:gravity="center"
         android:padding="10dp">
