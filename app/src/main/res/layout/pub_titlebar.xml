@@ -13,11 +13,12 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:ellipsize="marquee"
-        android:textStyle="bold"
         android:gravity="center_horizontal|center"
         android:singleLine="true"
-        android:textColor="#000000"
-        android:textSize="@dimen/activity_title" />
+        android:textColor="@color/top_bg_color"
+        android:text="你好"
+        android:textSize="@dimen/abc_action_bar_content_inset_material"
+         />
 
     <ImageView
         android:id="@+id/iv_backward"
@@ -28,7 +29,7 @@
         android:onClick="onBackward"
         android:padding="10px"
         android:scaleType="fitCenter"
-        android:src="@mipmap/back"
+        android:src="@mipmap/backx64"
         android:visibility="visible" />
 
     <TextView

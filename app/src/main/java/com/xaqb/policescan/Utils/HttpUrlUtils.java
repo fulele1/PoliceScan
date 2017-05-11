@@ -62,10 +62,18 @@ public class HttpUrlUtils {
         return getBaseUrl() + "/open.ashx?action=policecompanyinfo";
     }
 
+    //更新
     public String get_updata() {
         return getBaseUrl();
     }
 
+    //辖区查询
+    public String get_query_org() {
+        return getBaseUrl()+ "/open.ashx?action=policecompanies";
+    }
 
-
+    //辖区查询详情
+    public String get_query_org_detail() {
+        return getBaseUrl()+ "/open.ashx?action=policecompanies";
+    }
 }

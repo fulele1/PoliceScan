@@ -103,7 +103,13 @@ public class QueryPerActivity extends BaseActivity {
                 String phone = mEtPhone.getText().toString();
                 String ide = mEtIde.getText().toString();
                 String orgOld = mEtOrg.getText().toString();
-                String org = orgOld.substring(0,orgOld.indexOf("-"));
+                String org =null;
+                if (orgOld.contains("-")){
+                    org = orgOld.substring(0,orgOld.indexOf("-"));
+                }else{
+                    org = orgOld;
+                }
+
                 if(com.equals("")&&per.equals("")&&phone.equals("")&&ide.equals("")&&org.equals("")){
                     showToast("请输入查询条件");
                 }else{
@@ -144,4 +150,5 @@ public class QueryPerActivity extends BaseActivity {
             }
         }
     }
+
 }

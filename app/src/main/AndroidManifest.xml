@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xaqb.policescan">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -51,7 +52,9 @@
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="isDebug" />
 
-        <activity android:name=".Activity.SplashActivity">
+        <activity android:name=".Activity.SplashActivity"
+                    android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,10 +64,13 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            />
         <activity
             android:name=".Activity.QueryActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".Activity.QueryWebviewActivity"
             android:screenOrientation="portrait" />
@@ -75,17 +81,34 @@
             android:name=".Activity.FindKeyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_find_key" />
-        <activity android:name=".Activity.TotalActivity" />
-        <activity android:name=".Activity.QueryPerActivity" />
-        <activity android:name=".Activity.QueryComActivity" />
-        <activity android:name=".Activity.ComActivity" />
-        <activity android:name=".Activity.PerActivity" />
-        <activity android:name=".Activity.FinishActivity" />
-        <activity android:name=".Activity.PerDetailActivity" />
-        <activity android:name=".Activity.ComDetailActivity" />
-        <activity android:name=".Activity.SearchComsActivity" />
-        <activity android:name=".Activity.UpdateActivity" />
-        <activity android:name=".Activity.SearchOrgActivity"></activity>
+        <activity android:name=".Activity.TotalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.QueryPerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.QueryComActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.QueryOrgActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ComActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.PerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.FinishActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.PerDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ComDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SearchComsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.UpdateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SearchOrgActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.OrgActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.OrgDetailActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

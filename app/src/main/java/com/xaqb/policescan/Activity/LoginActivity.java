@@ -96,7 +96,7 @@ public class LoginActivity extends BaseActivity {
         pswmd5 = ChangeUtil.md5(psw);
         if (username == null || username.equals("")) {
             showToast("请输入账号");
-        } else if (psw == null || psw.equals("")) {
+        } else if (pswmd5 == null || pswmd5.equals("")) {
             showToast("请输入密码");
         } else {
             if (AppUtils.getInfo(instance).equals("")) {
@@ -107,6 +107,7 @@ public class LoginActivity extends BaseActivity {
             OkHttpUtils
                     .get()
                     .url(HttpUrlUtils.getHttpUrl().user_login() + "&user=" + username + "&pwd=" + pswmd5)
+                    //.url("http://192.168.0.137/open.ashx?action=policelogin" + "&user=" + username + "&pwd=" + pswmd5)
                     .build()
                     .execute(new StringCallback() {
                         @Override
@@ -121,15 +122,16 @@ public class LoginActivity extends BaseActivity {
                             if (s.startsWith("0")) {
                                 //suc
                                 String str = ChangeUtil.procRet(s);
-                                str = str.substring(1, str.length());//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
+                                str = str.substring(1, str.length());//{"policeid":"wrqlgd","policename":"刘警官","socode":"610100000000","soname":"西安市公安局","companynum":"3","employeenum":"6","todayexpress":"2"}
                                 LogUtils.i(str);
                                 Map<String, Object> data = GsonUtil.JsonToMap(str);
-                                LogUtils.i(data.toString());
-                                LogUtils.i(data.get("policeid").toString());
-
                                 SharedPreferences oData = getSharedPreferences("user", Activity.MODE_PRIVATE);
                                 SharedPreferences.Editor oEdit = oData.edit();//获得编辑器
                                 oEdit.putString("name", data.get("policename").toString());
+                                oEdit.putString("org", data.get("soname").toString());
+//                                oEdit.putString("coms", data.get("companynum").toString());
+//                                oEdit.putString("pers", data.get("employeenum").toString());
+//                                oEdit.putString("express", data.get("todayexpress").toString());
                                 oEdit.commit();//提交内容
 
                                 startActivity(new Intent(instance, TotalActivity.class));

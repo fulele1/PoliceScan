@@ -9,6 +9,7 @@ import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -121,11 +122,12 @@ public class QueryActivity extends BaseActivity {
                     @Override
                     public void onResponse(String s, int i) {
                         if (s.startsWith("0")) {
-                            //suc
+                            //success
                             loadingDialog.dismiss();
-                            String str = ChangeUtil.procRet(s);//{"policeid":"xaqianbai","policename":"西安千百","socode":"610100000000","soname":"西安市公安局"}
+                            String str = ChangeUtil.procRet(s);
                             str = str.substring(1, str.length());
                             Map<String, Object> data = GsonUtil.JsonToMap(str);
+                            LogUtils.i(data.toString());
                             if (!data.get("expresstype").toString().equals("")) {
                                 mTvExpressType.setText(data.get("expresstype").toString());//投递类型
                                 mTvCode.setText(string);
@@ -141,13 +143,11 @@ public class QueryActivity extends BaseActivity {
                                 }
                             } else {
                                 mTvCode.setText(string + "查无此单");
-                                //btQuery.setVisibility(View.GONE);
                             }
                         } else {
                             //failure
                             loadingDialog.dismiss();
                             mTvCode.setText(string + "(查无此单)");
-                            //btQuery.setVisibility(View.GONE);
                         }
                     }
                 });

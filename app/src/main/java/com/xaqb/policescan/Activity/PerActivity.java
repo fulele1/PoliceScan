@@ -14,6 +14,7 @@ import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 import com.xaqb.policescan.adapter.PerAdapter;
 import com.xaqb.policescan.entity.Person;
 
@@ -87,6 +88,7 @@ public class PerActivity extends BaseActivity implements OnDataFinishedLinstern{
             String str = ChangeUtil.procRet(s);
             str = str.substring(1,str.length());
             List<Map<String ,Object>> data = GsonUtil.GsonToListMaps(str);
+            LogUtils.i(data.toString());
             for (int i = 0;i < data.size();i++){
             Person person = new Person();
             person.setName(data.get(i).get("empname").toString());

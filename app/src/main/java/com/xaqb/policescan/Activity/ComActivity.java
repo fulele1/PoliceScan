@@ -90,6 +90,7 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
             String str = ChangeUtil.procRet(s);
             str = str.substring(1,str.length());
             List<Map<String ,Object>> data = GsonUtil.GsonToListMaps(str);
+            LogUtils.i(data.toString());
             for (int i = 0;i<data.size();i++){
             Company company = new Company();
             company.setCom(data.get(i).get("comname").toString());

@@ -1,6 +1,12 @@
 package com.xaqb.policescan.Activity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +21,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
+import com.xaqb.policescan.Utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -68,6 +75,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     public void addListener() {
         setOnDataFinishedLinstern(instance);
         getOkConnection(HttpUrlUtils.getHttpUrl().get_query_per_detail()+"&empcode="+instance.getIntent().getStringExtra("empcode"));
+        mTvNum.setOnClickListener(instance);
     }
 
 
@@ -79,6 +87,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
 //            str = str.substring(1,str.length());
             String str = s.split(String.valueOf((char) 1))[1];
             Map<String ,Object> data = GsonUtil.GsonToMaps(str);
+            LogUtils.i(data.toString());
             mTvCom.setText(data.get("comname").toString());
             mTvName.setText(data.get("empname").toString());
             mTvNum.setText(data.get("empphone").toString());
@@ -94,7 +103,16 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         loadingDialog.dismiss();
     }
 
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txt_num_per_dt://拨电话号码
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:"+mTvNum.getText().toString()));
+                startActivity(intent);
+                break;
+        }
+    }
 
     Double atCount = 0.0;
     Double dvCount = 0.0;
@@ -142,7 +160,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
     private void setChartStyle(LineChart mLineChart, LineData lineData, int color) {
         // 是否在折线图上添加边框
         mLineChart.setDrawBorders(false);
-        mLineChart.setDescription("数量");// 数据描述
+        mLineChart.setDescription("日期");// 数据描述
 
         // 如果没有数据的时候，会显示这个，类似listview的emtpyview
         mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
@@ -187,7 +205,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mLegend.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
         mLegend.setForm(Legend.LegendForm.CIRCLE);// 样式
         mLegend.setFormSize(15.0f);// 字体
-        mLegend.setTextColor(Color.BLUE);// 颜色
+        mLegend.setTextColor(Color.BLACK);// 颜色
 
         // 沿x轴动画，时间2000毫秒。
         mLineChart.animateX(2000);
@@ -239,7 +257,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mLineDataSet.setColor(Color.RED);
 
         // 圆球的颜色
-        mLineDataSet.setCircleColor(Color.GREEN);
+        //mLineDataSet.setCircleColor(Color.GREEN);
 
         // 设置mLineDataSet.setDrawHighlightIndicators(false)后，
         // Highlight的十字交叉的纵横线将不会显示，
@@ -255,10 +273,10 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         // mLineDataSet.setDrawCircleHole(true);
 
         // 改变折线样式，用曲线。
-        //mLineDataSet.setDrawCubic(true);
+        mLineDataSet.setDrawCubic(true);
         // 默认是直线
         // 曲线的平滑度，值越大越平滑。
-        //mLineDataSet.setCubicIntensity(0.2f);
+        mLineDataSet.setCubicIntensity(0.2f);
 
         // 填充曲线下方的区域，红色，半透明。
 //         mLineDataSet.setDrawFilled(true);
@@ -300,7 +318,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mLineDataSet2.setColor(Color.DKGRAY);
 
         // 圆球的颜色
-        mLineDataSet2.setCircleColor(Color.GREEN);
+        //mLineDataSet2.setCircleColor(Color.GREEN);
 
         // 设置mLineDataSet.setDrawHighlightIndicators(false)后，
         // Highlight的十字交叉的纵横线将不会显示，
@@ -316,15 +334,15 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         // mLineDataSet.setDrawCircleHole(true);
 
         // 改变折线样式，用曲线。
-        //mLineDataSet2.setDrawCubic(true);
+        mLineDataSet2.setDrawCubic(true);
         // 默认是直线
         // 曲线的平滑度，值越大越平滑。
-        //mLineDataSet2.setCubicIntensity(0.2f);
+        mLineDataSet2.setCubicIntensity(0.2f);
 
         // 填充曲线下方的区域，红色，半透明。
-//         mLineDataSet.setDrawFilled(true);
-//         mLineDataSet.setFillAlpha(128);
-//         mLineDataSet.setFillColor(Color.RED);
+//         mLineDataSet2.setDrawFilled(true);
+//         mLineDataSet2.setFillAlpha(128);
+//         mLineDataSet2.setFillColor(Color.RED);
 
         // 填充折线上数据点、圆球里面包裹的中心空白处的颜色。
         mLineDataSet2.setCircleColorHole(Color.YELLOW);

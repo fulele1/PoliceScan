@@ -52,6 +52,11 @@ public class TotalActivity extends BaseActivity {
     private TextView mTxtFinish;
     private TextView mTxtUpdate;
     private TextView mTxtUser;
+    private TextView mTxtUserOrg;
+    private TextView mTxtComCount;
+    private TextView mTxtPerCount;
+    private TextView mTxtTransport;
+    private TextView mTxtOrg;
     private ImageView ivZxing;
     private ImageView ivChaCha;
     private EditText etOrderNum;
@@ -66,7 +71,11 @@ public class TotalActivity extends BaseActivity {
         instance = this;
         assignViews();
         SharedPreferences oData = getSharedPreferences("user", Activity.MODE_PRIVATE);
-        mTxtUser.setText(oData.getString("name","无名"));
+        mTxtUser.setText(oData.getString("name",""));
+        mTxtUserOrg.setText(oData.getString("org",""));
+//        mTxtComCount.setText(oData.getString("coms",""));
+//        mTxtPerCount.setText(oData.getString("pers",""));
+//        mTxtTransport.setText(oData.getString("express",""));
     }
 
     private void assignViews() {
@@ -79,13 +88,17 @@ public class TotalActivity extends BaseActivity {
         mTxtModify = (TextView) findViewById(R.id.txt_modify_total);
         mTxtFinish = (TextView) findViewById(R.id.txt_finish_total);
         mTxtUpdate = (TextView) findViewById(R.id.txt_update_total);
-        mTxtUser = (TextView) findViewById(R.id.tv_user_total);
+        mTxtUser = (TextView) findViewById(R.id.tv_user_total);//用户
+        mTxtUserOrg = (TextView) findViewById(R.id.tv_user_org_total);//用户所在的管辖机构
+        mTxtComCount = (TextView) findViewById(R.id.tv_com_count_total);//企业数
+        mTxtPerCount = (TextView) findViewById(R.id.tv_per_count_total);//从业人员数
+        mTxtTransport = (TextView) findViewById(R.id.tv_transport_count_total);//收寄投递数
+        mTxtOrg = (TextView) findViewById(R.id.tv_org_total);//辖区统计查询
     }
 
     @Override
     public void initData() {
 
-        //startUpload();
         FsUrl=readConfig("url");
         if(FsUrl.length()==0)
         {
@@ -121,27 +134,7 @@ public class TotalActivity extends BaseActivity {
                     } else {
                         FbForceRight = true;
                     }
-//                    Message oMess = new Message();
-//                    if (sRet == "") {
-//                        FsRet = "错误的数据格式";
-
-//                        oMess.what = 2;
-//
-//                    } else {
-//                        FsRet = sRet.substring(1);
-//                        String sTmp = sRet.substring(0, 1);
-//                        if (sTmp.equals("0"))
-//                            oMess.what = 0;
-//                        else
-//                            oMess.what = 1;
-//
-//                    }
-//                    FoHandler.sendMessage(oMess);
                 } catch (Exception E) {
-//                    Message oMess = new Message();
-//                    oMess.what = 1;
-//                    FsRet = E.getMessage();
-//                    FoHandler.sendMessage(oMess);
                     FbForceRight = false;
                 }
             }
@@ -154,24 +147,12 @@ public class TotalActivity extends BaseActivity {
         ivZxing.setOnClickListener(instance);
         mTxtPer.setOnClickListener(instance);
         mTxtCome.setOnClickListener(instance);
+        mTxtOrg.setOnClickListener(instance);
         mTxtModify.setOnClickListener(instance);
         mTxtFinish.setOnClickListener(instance);
         mTxtUpdate.setOnClickListener(instance);
         ivChaCha.setOnClickListener(instance);
     }
-
-
-    public void startUpload() {
-        String[] aName = {"user", "url", "right"};
-        String[] aValue = {"", "", ""};
-        readConfig(aName, aValue);
-
-        Intent oInt = new Intent(this, SendService.class);
-        //Log.w("error","menu:"+aValue[0]+" "+aValue[1]+" "+appPath()+" "+aValue[2]);
-//        0222测试注释代码
-//        startService(oInt);
-    }
-
 
     @Override
     public void onClick(View v) {
@@ -193,6 +174,9 @@ public class TotalActivity extends BaseActivity {
             case R.id.txt_com_total://企业查询
                 startActivity(new Intent(instance,QueryComActivity.class));
                 break;
+            case R.id.tv_org_total://辖区统计查询
+                startActivity(new Intent(instance,QueryOrgActivity.class));
+                break;
 
             case R.id.txt_modify_total://修改密码
                 startActivity(new Intent(instance, FindKeyActivity.class));
@@ -205,7 +189,6 @@ public class TotalActivity extends BaseActivity {
                 getVersion();
                 FbUpdate = true;
                 //downVersion();
-
                 break;
             case R.id.iv_chacha_total://x号
                 startActivity(new Intent(instance,LoginActivity.class));
@@ -285,10 +268,6 @@ public class TotalActivity extends BaseActivity {
 
     @Override
     protected void dialogOk() {
-//        super.dialogOk();
-//
-//        downVersion();
-
         switch (FiDialogType) {
             case 0:
                 Intent oInt = new Intent(this, SendService.class);
@@ -373,7 +352,6 @@ public class TotalActivity extends BaseActivity {
             return info.versionName;
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             return "";
         }
     }
