@@ -44,6 +44,9 @@ dependencies {
     compile files('libs/bugly_crash_release.jar')
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.amap.api:3dmap:latest.integration'//3D地图
+    compile 'com.amap.api:map2d:latest.integration'//2D地图
+    compile 'com.amap.api:location:latest.integration'//定位
     testCompile 'junit:junit:4.12'
-    compile files('libs/mpandroidchartlibrary-2-1-6.jar')
+    compile files('libs/mpandroidchartlibrary-2-1-6.jar')//曲线图
 }

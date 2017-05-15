@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xaqb.policescan.R;
+import com.xaqb.policescan.Utils.ChartUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
 import com.xaqb.policescan.Utils.LogUtils;
@@ -150,8 +151,10 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvPost.setText(dvCount+"");
 
         // 获取完数据之后 制作7个数据点（沿x坐标轴）
-        LineData mLineData = makeLineData(7);
-        setChartStyle(chart, mLineData, Color.WHITE);
+        LineData mLineData = ChartUtil.makeLineData(7,dv,at,keys,"投递",Color.BLUE,"收寄",Color.RED);
+        ChartUtil.setChartStyle(chart,mLineData, Color.WHITE);
+//        LineData mLineData = makeLineData(7);
+//        setChartStyle(chart, mLineData, Color.WHITE);
     }
 
 
@@ -163,7 +166,7 @@ public class PerDetailActivity extends BaseActivity implements OnDataFinishedLin
         mLineChart.setDescription("日期");// 数据描述
 
         // 如果没有数据的时候，会显示这个，类似listview的emtpyview
-        mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
+        mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@fl");
 
         // 是否绘制背景颜色。
         // 如果mLineChart.setDrawGridBackground(false)，

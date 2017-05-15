@@ -73,8 +73,8 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
      */
     @Override
     public void addListener() {
-        getOkConnection(HttpUrlUtils.getHttpUrl().get_query_com()+getData());//进行网络连接
         this.setOnDataFinishedLinstern(instance);
+        getOkConnection(HttpUrlUtils.getHttpUrl().get_query_com()+getData());//进行网络连接
     }
 
 
@@ -84,6 +84,7 @@ public class ComActivity extends BaseActivity implements OnDataFinishedLinstern{
      */
     @Override
     public void dataFinishedLinstern(String s) {
+        LogUtils.i(s);
         mCompanys = new ArrayList<>();
         if (s.startsWith("0")){
             //响应成功

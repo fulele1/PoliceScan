@@ -32,7 +32,6 @@ public class LoginActivity extends BaseActivity {
     private String username, psw, pswmd5;
     private EditText etUsername, etPsw;
     private CheckBox cbRememberPsw;
-    private Intent intent;
     private TextView mTxtVersion;
 
 
@@ -107,7 +106,6 @@ public class LoginActivity extends BaseActivity {
             OkHttpUtils
                     .get()
                     .url(HttpUrlUtils.getHttpUrl().user_login() + "&user=" + username + "&pwd=" + pswmd5)
-                    //.url("http://192.168.0.137/open.ashx?action=policelogin" + "&user=" + username + "&pwd=" + pswmd5)
                     .build()
                     .execute(new StringCallback() {
                         @Override
@@ -129,9 +127,9 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferences.Editor oEdit = oData.edit();//获得编辑器
                                 oEdit.putString("name", data.get("policename").toString());
                                 oEdit.putString("org", data.get("soname").toString());
-//                                oEdit.putString("coms", data.get("companynum").toString());
-//                                oEdit.putString("pers", data.get("employeenum").toString());
-//                                oEdit.putString("express", data.get("todayexpress").toString());
+                                oEdit.putString("coms", data.get("companynum").toString());
+                                oEdit.putString("pers", data.get("employeenum").toString());
+                                oEdit.putString("express", data.get("todayexpress").toString());
                                 oEdit.commit();//提交内容
 
                                 startActivity(new Intent(instance, TotalActivity.class));

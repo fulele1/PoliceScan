@@ -38,8 +38,6 @@
             </LinearLayout>
             <LinearLayout style="@style/common_horizontal_division_line_style" />
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

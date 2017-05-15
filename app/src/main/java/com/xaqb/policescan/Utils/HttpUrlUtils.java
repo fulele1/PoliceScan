@@ -14,6 +14,9 @@ public class HttpUrlUtils {
     private String getBaseUrl() {
         return "http://xawz.xaqianbai.net:8090";
     }
+//    private String getBaseUrl() {
+//        return "http://192.168.0.137";
+//    }
 
     //查询订单
     //http://xawz.xaqianbai.net:8090/open.ashx?action=policeexpressinfo&code=719677781148
@@ -67,13 +70,9 @@ public class HttpUrlUtils {
         return getBaseUrl();
     }
 
-    //辖区查询
-    public String get_query_org() {
-        return getBaseUrl()+ "/open.ashx?action=policecompanies";
-    }
-
     //辖区查询详情
+    //"http://192.168.0.137/open.ashx?action=policesevenInfos
     public String get_query_org_detail() {
-        return getBaseUrl()+ "/open.ashx?action=policecompanies";
+        return getBaseUrl()+ "/open.ashx?action=policesevenInfos";
     }
 }

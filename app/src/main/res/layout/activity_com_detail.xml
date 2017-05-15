@@ -11,8 +11,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/activity_result"
@@ -21,22 +21,25 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10px"
                 android:layout_marginLeft="10dp"
                 android:padding="@dimen/activity_textview_pading">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="品牌名称：" />
+                    android:text="品牌名称："/>
                 <TextView
                     android:id="@+id/txt_com_com_dt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
+
             <LinearLayout style="@style/common_horizontal_division_line_style" />
 
             <LinearLayout
@@ -45,42 +48,47 @@
                 android:layout_marginLeft="10dp"
                 android:padding="@dimen/activity_textview_pading">
                 <TextView
+                    android:id="@+id/AAA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="场所地址："
+                    android:layout_gravity="center"
+                    />
+                <ImageView
+                    android:id="@+id/iv_location_com_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/location48"
                     />
                 <TextView
+                    android:layout_toRightOf="@+id/AAA"
                     android:id="@+id/txt_plice_com_dt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     />
             </LinearLayout>
+
             <LinearLayout style="@style/common_horizontal_division_line_style" />
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:padding="@dimen/activity_textview_pading">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="从业人数："
-
                     android:id="@+id/textView4" />
-
                 <TextView
                     android:id="@+id/txt_per_com_dt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
             </LinearLayout>
+
             <LinearLayout style="@style/common_horizontal_division_line_style" />
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,8 +106,8 @@
                     android:layout_height="wrap_content"
                     />
             </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
 
+            <LinearLayout style="@style/common_horizontal_division_line_style" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,7 +120,6 @@
                     android:layout_height="wrap_content"
                     android:text="投递数量："
                     android:id="@+id/textView2" />
-
                 <TextView
                     android:id="@+id/txt_post_com_dt"
                     android:layout_width="wrap_content"
@@ -124,7 +131,6 @@
 
     </ScrollView>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -132,7 +138,6 @@
         android:layout_weight="1">
 
         <com.github.mikephil.charting.charts.LineChart
-
             android:id="@+id/chart_com_de"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -140,9 +145,6 @@
             android:layout_weight="1"
             android:padding="15dp"
             />
-
-
     </LinearLayout>
-
 
 </LinearLayout>

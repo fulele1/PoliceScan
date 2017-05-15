@@ -73,9 +73,9 @@ public class TotalActivity extends BaseActivity {
         SharedPreferences oData = getSharedPreferences("user", Activity.MODE_PRIVATE);
         mTxtUser.setText(oData.getString("name",""));
         mTxtUserOrg.setText(oData.getString("org",""));
-//        mTxtComCount.setText(oData.getString("coms",""));
-//        mTxtPerCount.setText(oData.getString("pers",""));
-//        mTxtTransport.setText(oData.getString("express",""));
+        mTxtComCount.setText(oData.getString("coms",""));
+        mTxtPerCount.setText(oData.getString("pers",""));
+        mTxtTransport.setText(oData.getString("express",""));
     }
 
     private void assignViews() {

@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:orientation="vertical"
         android:background="@mipmap/ba"
         >
@@ -59,32 +59,38 @@
                 android:layout_marginLeft="50dp"
 
                 />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/padding"
+                >
+                <TextView
+                    android:id="@+id/tv_user_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="张三"
+                    />
+                <TextView
+                    android:id="@+id/tv_user_org_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="xx管辖机构"
+                    />
 
-            <TextView
-                android:id="@+id/tv_user_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="张三"
-                />
-            <TextView
-                android:id="@+id/tv_user_org_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="xx管辖机构"
-                />
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:paddingTop="@dimen/activity_horizontal_margins"
             >
 
@@ -99,6 +105,7 @@
                     android:text="企业数"
                     android:textColor="@color/top_bg_color"
                     android:layout_gravity="center"
+                    android:textSize="@dimen/textview_small_size"
                     android:gravity="center"/>
                 <TextView
                     android:id="@+id/tv_com_count_total"
@@ -106,6 +113,8 @@
                     android:layout_height="wrap_content"
                     android:text="100"
                     android:layout_weight="1"
+                    android:textSize="@dimen/textview_small_size"
+
                     android:textColor="@color/top_bg_color"
                     android:layout_gravity="center"
                     android:gravity="center"/>
@@ -119,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="从业人员数"
+                    android:textSize="@dimen/textview_small_size"
                     android:layout_gravity="center"
                     android:textColor="@color/top_bg_color"
                     android:gravity="center"/>
@@ -128,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:text="100"
                     android:layout_weight="1"
+                    android:textSize="@dimen/textview_small_size"
                     android:textColor="@color/top_bg_color"
                     android:layout_gravity="center"
                     android:gravity="center"/>
@@ -142,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:text="收寄投递数"
                     android:layout_gravity="center"
+                    android:textSize="@dimen/textview_small_size"
                     android:textColor="@color/top_bg_color"
                     android:gravity="center"/>
                 <TextView
@@ -149,17 +161,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    android:textSize="@dimen/textview_small_size"
                     android:layout_weight="1"
                     android:textColor="@color/top_bg_color"
                     android:layout_gravity="center"
                     android:gravity="center"/>
             </LinearLayout>
-
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 
 
@@ -200,7 +208,7 @@
                 android:id="@+id/iv_zxing"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@mipmap/scanner64"
+                android:src="@mipmap/zxing"
                 android:layout_gravity="center" />
 
 
@@ -218,7 +226,7 @@
                 android:id="@+id/tv_org_total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="管辖机构"
+                android:text="数据统计"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -301,10 +309,12 @@
             android:layout_marginLeft="@dimen/activity_horizontal_marginss"
             />-->
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7" />
+        android:layout_weight="0.2"
+        android:id="@+id/view3" />
 
     <TextView
             android:text="西安市公安局"
