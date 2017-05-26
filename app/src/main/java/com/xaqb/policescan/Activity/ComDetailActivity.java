@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     private TextView mTvPer;
     private TextView mTvGet;
     private TextView mTvPost;
-    private ImageView mIvLocation;//定位符
+    private LinearLayout mLayoutPlace;//定位
     private List<Double> at;//7天收寄数量
     private List<Double> dv;//7天投递数量
     private List<String> keys;//x轴的描述
@@ -59,7 +60,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvPer = (TextView) findViewById(R.id.txt_per_com_dt);
         mTvGet = (TextView) findViewById(R.id.txt_get_com_dt);
         mTvPost = (TextView) findViewById(R.id.txt_post_com_dt);
-        mIvLocation = (ImageView) findViewById(R.id.iv_location_com_del);
+        mLayoutPlace = (LinearLayout) findViewById(R.id.layout_place);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     @Override
     public void addListener() {
         setOnDataFinishedLinstern(instance);
-        mIvLocation.setOnClickListener(instance);
+        mLayoutPlace.setOnClickListener(instance);
         getOkConnection(HttpUrlUtils.getHttpUrl().get_query_com_detail()+ "&comcode="+instance.getIntent().getStringExtra("comcode"));
         LogUtils.i(instance.getIntent().getStringExtra("comcode"));
     }
@@ -77,8 +78,11 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.iv_location_com_del://定位
+            case R.id.layout_place://定位
                 Intent intent = new Intent(instance, MapActivity.class);
+                intent.putExtra("Lat",mLatitude);
+                intent.putExtra("Lng",mLongitude);
+                intent.putExtra("title",mTvCom.getText().toString().trim());
                 startActivity(intent);
                 break;
         }
@@ -144,4 +148,5 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         LineData mLineData = ChartUtil.makeLineData(7,dv,at,keys,"投递",Color.BLUE,"收寄",Color.RED);
         ChartUtil.setChartStyle(chart,mLineData, Color.WHITE);
     }
+
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/padding"
     tools:context="com.xaqb.policescan.Activity.OrgDetailActivity">
 
     <ScrollView
@@ -20,131 +21,285 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="@dimen/activity_textview_pading">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="辖区名称："
-                    />
-                <TextView
-                    android:id="@+id/tv_name_org"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="@dimen/activity_textview_pading">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总品牌数："
-                    />
-                <TextView
-                    android:id="@+id/tv_brand_org"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
+                android:padding="@dimen/padding">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/padding">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/mess48"
+                        android:layout_gravity="center"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_above="@+id/tv_name_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="辖区名称"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_name_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/padding"
+                    android:layout_marginLeft="@dimen/padding"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/column"
+                        android:layout_gravity="center"
+                        android:id="@+id/imageView" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_above="@+id/tv_brand_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总品牌数"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_brand_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="@dimen/activity_textview_pading">
+                android:padding="@dimen/padding"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总企业数："
-                    android:id="@+id/textView4" />
+                >
 
-                <TextView
-                    android:id="@+id/tv_com_org"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/padding"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/cricl"
+                        android:layout_gravity="center"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_above="@+id/tv_com_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总企业数"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_com_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/padding"
+                    android:layout_marginLeft="@dimen/padding"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/quxian48"
+                        android:layout_gravity="center"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_above="@+id/tv_per_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="从业人员"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_per_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center" />
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="@dimen/activity_textview_pading">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="从业人员："
-                    />
-                <TextView
-                    android:id="@+id/tv_per_org"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
+                android:padding="@dimen/padding"
+                >
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/padding"
+                    >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
-                android:layout_marginLeft="10dp"
-                android:padding="@dimen/activity_textview_pading">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总寄件数：" />
-                <TextView
-                    android:id="@+id/tv_post_count_org"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/post48"
+                        android:layout_gravity="center"
+                        />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
-                android:layout_marginLeft="10dp"
-                android:padding="@dimen/activity_textview_pading">
-                <TextView
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_above="@+id/tv_post_count_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总寄件数"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_post_count_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总收件数：" />
-                <TextView
-                    android:id="@+id/tv_receive_count_org"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/padding"
+                    android:layout_marginLeft="@dimen/padding"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/receive48"
+                        android:layout_gravity="center"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_above="@+id/tv_receive_count_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总收件数"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_receive_count_org"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/top_bg_color"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
             </LinearLayout>
-            <LinearLayout style="@style/common_horizontal_division_line_style" />
 
         </LinearLayout>
 
     </ScrollView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1">
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart_org_de"
@@ -154,6 +309,5 @@
             android:layout_weight="1"
             android:padding="15dp"
             />
-    </LinearLayout>
 
 </LinearLayout>

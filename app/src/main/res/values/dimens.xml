@@ -15,6 +15,7 @@
     <dimen name="title_height">50dp</dimen>
     <dimen name="logo">200dp</dimen>
     <dimen name="padding">10dp</dimen>
+    <dimen name="paddings">15dp</dimen>
     <dimen name="button_normal_size">18sp</dimen>
     <dimen name="button_size">250sp</dimen>
 </resources>

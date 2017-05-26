@@ -154,11 +154,6 @@ public class QueryOrgActivity extends BaseActivity {
                 }
                 mStart = mEtStart.getText().toString().trim();
                 mEnd = mEtEnd.getText().toString().trim();
-
-                if (mName.equals("")&&mStart.equals("")&&mEnd.equals("")){
-                    showToast("请输入查询条件");
-                    return;
-                }
                 Intent intent = new Intent(instance,OrgDetailActivity.class);
                 intent.putExtra("mName",mName);
                 intent.putExtra("mStart",mStart);
@@ -167,6 +162,7 @@ public class QueryOrgActivity extends BaseActivity {
                 break;
         }
     }
+
     public void chooseDatePicker(){
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);

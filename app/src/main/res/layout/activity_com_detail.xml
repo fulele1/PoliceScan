@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:id="@+id/layout_place"
                 android:padding="@dimen/activity_textview_pading">
                 <TextView
                     android:id="@+id/AAA"
@@ -58,7 +59,8 @@
                     android:id="@+id/iv_location_com_del"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/location48"
+                    android:src="@mipmap/location32"
+                    android:layout_gravity="center"
                     />
                 <TextView
                     android:layout_toRightOf="@+id/AAA"
