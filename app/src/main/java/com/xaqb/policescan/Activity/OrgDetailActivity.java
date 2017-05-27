@@ -4,6 +4,7 @@ package com.xaqb.policescan.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class OrgDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvBrand = (TextView) findViewById(R.id.tv_brand_org);
         mTvCom = (TextView) findViewById(R.id.tv_com_org);
         mTvPer = (TextView) findViewById(R.id.tv_per_org);
+        mTvPer.setVisibility(View.VISIBLE);
         mTvPostCount = (TextView) findViewById(R.id.tv_post_count_org);
         mTvReCount = (TextView) findViewById(R.id.tv_receive_count_org);
         mChart = (LineChart) findViewById(R.id.chart_org_de);
