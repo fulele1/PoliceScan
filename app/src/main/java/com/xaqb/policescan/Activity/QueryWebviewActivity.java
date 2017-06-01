@@ -24,16 +24,6 @@ public class QueryWebviewActivity extends BaseActivity {
     public void initTitleBar() {
         setTitle(R.string.query);
         showBackwardView(true);
-//        findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (wvQuery.canGoBack()) {
-//                    wvQuery.goBack(); // goBack()表示返回webView的上一页面
-//                } else if (!wvQuery.canGoBack()) {
-//                    finish();
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -60,12 +50,6 @@ public class QueryWebviewActivity extends BaseActivity {
         // 设置是否可缩放
         wvQuery.getSettings().setBuiltInZoomControls(true);
 
-//        wvQuery.addJavascriptInterface(new Object() {
-//            @JavascriptInterface
-//            public void callJavaMethod() {
-//                finish();
-//            }
-//        }, "demo");
 
         // 如果设置了此属性，那么webView.getSettings().setSupportZoom(true);也默认设置为true
 //        LogU.i(TAG, "webView访问的地址为:" + Consts.enterTest + "?accId=" + FuncUtil.getAccID(instance) + "&paperId=" + paperIdStr);

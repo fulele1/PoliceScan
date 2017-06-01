@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by lenovo on 2017/3/3.
+ * Created by fl on 2017/3/3.
  */
 
 public class ChangeUtil {

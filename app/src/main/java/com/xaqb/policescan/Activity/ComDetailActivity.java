@@ -3,8 +3,8 @@ package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +15,6 @@ import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChartUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
 import com.xaqb.policescan.Utils.HttpUrlUtils;
-import com.xaqb.policescan.Utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,7 +32,10 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     private TextView mTvPer;
     private TextView mTvGet;
     private TextView mTvPost;
+    private TextView mTvPerName;
+    private TextView mTvPerPhone;
     private LinearLayout mLayoutPlace;//定位
+    private LinearLayout mLayoutPhone;//打电话
     private List<Double> at;//7天收寄数量
     private List<Double> dv;//7天投递数量
     private List<String> keys;//x轴的描述
@@ -60,7 +62,10 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
         mTvPer = (TextView) findViewById(R.id.txt_per_com_dt);
         mTvGet = (TextView) findViewById(R.id.txt_get_com_dt);
         mTvPost = (TextView) findViewById(R.id.txt_post_com_dt);
+        mTvPerName = (TextView) findViewById(R.id.txt_per_com_);
+        mTvPerPhone = (TextView) findViewById(R.id.txt_per_phone_com_dt);
         mLayoutPlace = (LinearLayout) findViewById(R.id.layout_place);
+        mLayoutPhone = (LinearLayout) findViewById(R.id.layout_phone);
     }
 
     @Override
@@ -71,37 +76,51 @@ public class ComDetailActivity extends BaseActivity implements OnDataFinishedLin
     public void addListener() {
         setOnDataFinishedLinstern(instance);
         mLayoutPlace.setOnClickListener(instance);
+        mLayoutPhone.setOnClickListener(instance);
         getOkConnection(HttpUrlUtils.getHttpUrl().get_query_com_detail()+ "&comcode="+instance.getIntent().getStringExtra("comcode"));
-        LogUtils.i(instance.getIntent().getStringExtra("comcode"));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.layout_place://定位
+                if (mLatitude.equals("0.000000")||mLongitude.equals("0.000000")){
+                    showToast("地址有误");
+                }else{
                 Intent intent = new Intent(instance, MapActivity.class);
                 intent.putExtra("Lat",mLatitude);
                 intent.putExtra("Lng",mLongitude);
                 intent.putExtra("title",mTvCom.getText().toString().trim());
                 startActivity(intent);
+                }
+                break;
+            case R.id.layout_phone://打电话
+                if (!mPhone.equals("")){
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:"+mPhone));
+                    startActivity(intent);
+                }
                 break;
         }
     }
 
+    private String mPhone;
     @Override
     public void dataFinishedLinstern(String s) {
-        LogUtils.i("return -s =",s);
         if (s.startsWith("0")){
             //响应成功
             String str = s.split(String.valueOf((char) 1))[1];
             Map<String,Object> data = GsonUtil.GsonToMaps(str);
-            LogUtils.i(data.toString());
-            LogUtils.i(data.get("comlng").toString()+data.get("comlat").toString());
             mTvCom.setText(data.get("comname").toString());
             mTvPlice.setText(data.get("comaddress").toString());
             mTvPer.setText(data.get("empnum").toString());
+            mPhone = data.get("commanphone").toString();
+            mTvPerPhone.setText(mPhone);
+            mTvPerName.setText(data.get("comman").toString());
             mLongitude = data.get("comlng").toString();
             mLatitude = data.get("comlat").toString();
+//            mLongitude = "121.763260";
+//            mLatitude = "31.053959";
             getData(data);
         }else{
             //响应失败

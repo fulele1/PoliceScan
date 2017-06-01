@@ -1,8 +1,6 @@
 package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,11 +72,6 @@ public class FindKeyActivity extends BaseActivity {
         pswmd5 = ChangeUtil.md5(psw);
         confirmPsw = etConfirmPsw.getText().toString().trim();
         confirmPswmd5 = ChangeUtil.md5(confirmPsw);
-//        if (phone == null || phone.equals("")) {
-//            showToast("请输入手机号码");
-//        } else if (vCode == null || vCode.equals("")) {
-//            showToast("请输入验证码");
-//        }
         if(old.equals("")){
             showToast("请输入旧密码");
         }
@@ -89,14 +82,6 @@ public class FindKeyActivity extends BaseActivity {
         } else if (!psw.equals(confirmPsw)) {
             showToast("两次输入的密码不一致");
         } else {
-//            RequestParams requestParams = new RequestParams();
-//            requestParams.addBodyParameter("tel", phone);
-//            requestParams.addBodyParameter("new_password", psw);
-//            requestParams.addBodyParameter("confirm_password", confirmPsw);
-//            requestParams.addBodyParameter("code", vCode);
-//            requestParams.addBodyParameter("codekey", codeKey);
-//            ajax(requestParams, HttpUrlUtils.getHttpUrl().reset_password());
-//            LogUtils.i(HttpUrlUtils.getHttpUrl().reset_password());
 
             loadingDialog.show("正在修改");
 
@@ -117,11 +102,6 @@ public class FindKeyActivity extends BaseActivity {
                             LogUtils.i(s);
 
                             if (s.startsWith("0")) {
-                                //suc
-//                                String str = ChangeUtil.procRet(s);
-//                                str = str.substring(1,str.length());
-//                                LogUtils.i(str);
-//                                Map<String,Object> data =  GsonUtil.JsonToMap(str);
                                 showToast("找回密码成功");
                                         instance.startActivity(new Intent(instance,LoginActivity.class));
                                         instance.finish();

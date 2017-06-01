@@ -2,18 +2,15 @@ package com.xaqb.policescan.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.xaqb.policescan.R;
 
-import okhttp3.internal.http.CallServerInterceptor;
 
 
 /**

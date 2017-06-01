@@ -274,6 +274,5 @@ public class UpdateActivity extends BaseActivity {
         FbRun = true;
         FoThread.start();
         FoText.setText("开始下载.....");
-
     }
 }

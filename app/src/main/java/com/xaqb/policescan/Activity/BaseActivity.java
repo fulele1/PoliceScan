@@ -65,17 +65,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         //全屏显示
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-//        /*沉浸式状态栏*/
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            setTranslucentStatus(true);
-//            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-//            tintManager.setStatusBarTintEnabled(true);
-//            tintManager.setStatusBarTintResource(R.color.colorstate);//通知栏所需颜色
-//        }
-
 
         AppManager.getAppManager().addActivity(this);//添加Activity到堆栈中
-        // setImmersionStatus();
         try {
             setupViews();
             context = this;
@@ -89,26 +80,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         }
     }
 
-//    @TargetApi(19)
-//    private void setTranslucentStatus(boolean on) {
-//        Window win = getWindow();
-//        WindowManager.LayoutParams winParams = win.getAttributes();
-//        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-//        if (on) {
-//            winParams.flags |= bits;
-//        } else {
-//            winParams.flags &= ~bits;
-//        }
-//        win.setAttributes(winParams);
-//    }
-
-    public TextView getmForwardButton() {
-        return tv_forward;
-    }
-
-    public ImageView getmBackwardbButton() {
-        return iv_backward;
-    }
 
     /**
      * 初始化设置标题栏
@@ -154,34 +125,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         layout_titlebar.setVisibility(visibility);
     }
 
-    /**
-     * 设置标题栏的整体背景颜色（含沉浸式状态栏）
-     *
-     * @param color
-     */
-    public void setTitleBarBackground(int color) {
-        setStatusBarBackground(color);
-        layout_titlebar.setBackgroundColor(color);
-    }
 
-    /**
-     * 设置返回按钮背景图片（含沉浸式状态栏）
-     *
-     * @param drawable
-     */
-    public void setBackwardButtonBackgroundDrawable(Drawable drawable, LinearLayout.LayoutParams layoutParams) {
-        iv_backward.setImageDrawable(drawable);
-        iv_backward.setLayoutParams(layoutParams);
-    }
-
-    /**
-     * 设置返回按钮背景图片（含沉浸式状态栏）
-     *
-     * @param drawable
-     */
-    public void setBackwardButtonBackgroundDrawable(Drawable drawable) {
-        iv_backward.setImageDrawable(drawable);
-    }
 
     /**
      * 设置浸式状态栏的整体背景颜色
@@ -192,14 +136,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         llRoot.setBackgroundColor(color);
     }
 
-    /**
-     * 设置浸式状态栏的整体背景图片(慎用)
-     *
-     * @param drawable
-     */
-    public void setStatusBarBackgroundDrawable(Drawable drawable) {
-        llRoot.setBackgroundDrawable(drawable);
-    }
 
     /**
      * 是否显示返回按钮
@@ -217,18 +153,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         }
     }
 
-    protected void setBackwardViewLayoutParams(LinearLayout.LayoutParams layoutParams) {
-        if (iv_backward != null) {
-            iv_backward.setLayoutParams(layoutParams);
-        }
-    }
-
-    protected void setForwardViewLayoutParams(LinearLayout.LayoutParams layoutParams) {
-        if (iv_backward != null) {
-            iv_backward.setLayoutParams(layoutParams);
-        }
-    }
-
     protected void showMess(String sMess, boolean bLong) {
         Toast.makeText(this, sMess, bLong ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();
     }
@@ -239,61 +163,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         return oConfig.getString(sName, "");
     }
 
-    protected void readConfig(String[] aName, String[] aValue) {
-        SharedPreferences oConfig = getSharedPreferences("config", Activity.MODE_PRIVATE);
-        int i;
-        for (i = 0; i < aName.length; i++)
-            aValue[i] = oConfig.getString(aName[i], "");
-    }
 
-
-    protected void saveExtra() {
-        String sName = this.getClass().getName();
-        SharedPreferences oData = getSharedPreferences(sName, Activity.MODE_PRIVATE);
-        SharedPreferences.Editor oEdit = oData.edit();//获得编辑器
-        saveExtraItem(oEdit);
-        oEdit.putString(sName, "yes");
-        oEdit.commit();//提交内容
-    }
-
-
-    protected void saveExtraItem(SharedPreferences.Editor oEdit) {
-
-    }
-
-
-    /**
-     * 提供是否显示提交按钮
-     *
-     * @param show true则显示
-     */
-    protected void showForwardView(boolean show) {
-        if (tv_forward != null) {
-            if (show) {
-                tv_forward.setVisibility(View.VISIBLE);
-            } else {
-                tv_forward.setVisibility(View.INVISIBLE);
-            }
-        } // else ignored
-    }
-
-    /**
-     * 提供是否显示提交按钮
-     *
-     * @param title 文字
-     * @param show  true则显示
-     */
-    protected void showForwardView(CharSequence title, boolean show) {
-        if (tv_forward != null) {
-            if (show) {
-                tv_forward.setText(title);
-                tv_forward.setVisibility(View.VISIBLE);
-
-            } else {
-                tv_forward.setVisibility(View.INVISIBLE);
-            }
-        }
-    }
 
     /**
      * 返回按钮点击后触发
@@ -378,13 +248,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         if (null != toast) {
             toast.cancel();
         }
-//        MobclickAgent.onPause(this);
     }
 
-    /* (non-Javadoc)
-             * @see android.view.View.OnClickListener#onClick(android.view.View)
-             * 按钮点击调用的方法
-             */
     @Override
     public void onClick(View v) {
     }
@@ -451,12 +316,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 finish();//结束当前Activity
                startActivity(new Intent(context,LoginActivity.class));
 
-                //注销登录
-//                Intent startMain = new Intent(Intent.ACTION_MAIN);
-//                startMain.addCategory(Intent.CATEGORY_HOME);
-//                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(startMain);
-//                System.exit(0);// 退出程序
             }
         });
         Button btNo = (Button) window.findViewById(R.id.btn_dia_no);

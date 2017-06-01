@@ -3,7 +3,7 @@ package com.xaqb.policescan.Utils;
 import android.util.Log;
 
 /**
- * Created by lenovo on 2016/11/24.
+ * Created by fl on 2016/11/24.
  */
 public class LogUtils {
 

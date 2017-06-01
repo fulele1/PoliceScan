@@ -14,7 +14,7 @@ import com.xaqb.policescan.entity.Person;
 import java.util.List;
 
 /**
- * Created by lenovo on 2017/3/15.
+ * Created by fl on 2017/3/15.
  */
 
 public class PerAdapter extends BaseAdapter {

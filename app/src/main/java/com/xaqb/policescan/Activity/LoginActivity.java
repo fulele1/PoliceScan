@@ -3,7 +3,6 @@ package com.xaqb.policescan.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,7 +23,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.Map;
 
 /**
- * Created by lenovo on 2017/3/6.
+ * Created by fl on 2017/3/6.
  */
 public class LoginActivity extends BaseActivity {
     private LoginActivity instance;

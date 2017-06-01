@@ -2,8 +2,6 @@ package com.xaqb.policescan.Activity;
 
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -21,11 +19,6 @@ import com.xaqb.policescan.Listview.PinnedSectionListView;
 import com.xaqb.policescan.R;
 import com.xaqb.policescan.Utils.ChangeUtil;
 import com.xaqb.policescan.Utils.GsonUtil;
-import com.xaqb.policescan.Utils.HttpUrlUtils;
-import com.xaqb.policescan.db.SQLdm;
-import com.xaqb.policescan.entity.Company;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -35,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.Call;
 
 public class SearchOrgActivity extends BaseActivity implements OnDataFinishedLinstern{
 
@@ -95,20 +87,9 @@ public class SearchOrgActivity extends BaseActivity implements OnDataFinishedLin
     }
 
     /**
-     * 从数据库中获取数据并进行排序
+     * 获取数据并进行排序
      */
     public void getData(){
-
-//        SQLdm s = new SQLdm();
-//        SQLiteDatabase db =s.openDatabase(getApplicationContext());
-//        Cursor cursor = db.query("BRAND",null,null,null,null,null,null);
-//        while (cursor.moveToNext()){
-//            BrandBean cityBean = new BrandBean();
-//            cityBean.setName(cursor.getString(cursor.getColumnIndex("BCNAME")));
-//            cityBean.setCity_id(cursor.getString(cursor.getColumnIndex("BCCODE")));
-//            list_all.add(cityBean);
-//        }
-//        cursor.close();
 
         //按拼音排序
         SearchOrgActivity.MemberSortUtil sortUtil = new SearchOrgActivity.MemberSortUtil();
