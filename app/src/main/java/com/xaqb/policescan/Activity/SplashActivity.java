@@ -11,7 +11,7 @@ import com.xaqb.policescan.R;
 
 
 /**
- * Created by lenovo on 2017/3/7.
+ * Created by fl on 2017/3/7.
  */
 public class SplashActivity extends Activity {
     @Override
@@ -34,4 +34,5 @@ public class SplashActivity extends Activity {
             }
         }, 1000);
     }
+    
 }
